@@ -17,6 +17,20 @@
     <div class="grain" aria-hidden="true"></div>
 
     <main class="app-shell">
+      <section class="delight-compass" aria-labelledby="delightHeading">
+        <p class="compass-kicker">Design North Star</p>
+        <h2 id="delightHeading">
+          “Is this the absolute delightful and joyful experience possible for a user?”
+        </h2>
+        <ul class="compass-list">
+          <li>Effortless: instant feedback, clear controls, zero confusion.</li>
+          <li>Inclusive: keyboard-friendly, accessible, and readable for everyone.</li>
+          <li>Emotionally rich: beauty, wonder, and a sense of discovery.</li>
+          <li>Reliable: graceful loading, resilient interactions, and safe fallbacks.</li>
+          <li>Continuously improving: save favorites and learn what users love.</li>
+        </ul>
+      </section>
+
       <section class="hero-card" id="heroCard">
         <div class="image-stack">
           <img id="siteImage" class="site-image" alt="UNESCO site" />
@@ -42,10 +56,17 @@
             </article>
           </div>
 
-          <button id="shuffleBtn" class="shuffle-btn" type="button">
-            <span>Discover another sanctuary</span>
-            <span class="arrow">→</span>
-          </button>
+          <div class="actions">
+            <button id="shuffleBtn" class="shuffle-btn" type="button">
+              <span>Discover another sanctuary</span>
+              <span class="arrow">→</span>
+            </button>
+            <button id="favoriteBtn" class="ghost-btn" type="button">
+              Save favorite
+            </button>
+          </div>
+          <p id="favoriteCount" class="favorite-count" aria-live="polite"></p>
+          <p id="statusMessage" class="status-message" aria-live="polite"></p>
         </div>
       </section>
     </main>

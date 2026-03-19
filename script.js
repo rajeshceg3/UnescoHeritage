@@ -69,10 +69,15 @@ const refs = {
   year: document.getElementById('siteYear'),
   category: document.getElementById('siteCategory'),
   image: document.getElementById('siteImage'),
-  button: document.getElementById('shuffleBtn')
+  button: document.getElementById('shuffleBtn'),
+  favoriteButton: document.getElementById('favoriteBtn'),
+  favoriteCount: document.getElementById('favoriteCount'),
+  statusMessage: document.getElementById('statusMessage')
 };
 
 let currentIndex = -1;
+const FAVORITES_KEY = 'unesco-favorites';
+const favoriteIndexes = new Set(JSON.parse(localStorage.getItem(FAVORITES_KEY) ?? '[]'));
 
 function randomIndex(exclude) {
   if (heritageSites.length < 2) {
@@ -86,9 +91,24 @@ function randomIndex(exclude) {
   return next;
 }
 
+function preloadImage(url) {
+  const img = new Image();
+  img.src = url;
+}
+
+function updateFavoriteCount() {
+  refs.favoriteCount.textContent = `Favorites saved: ${favoriteIndexes.size}`;
+}
+
+function setStatus(message) {
+  refs.statusMessage.textContent = message;
+}
+
 function renderSite(index) {
   const site = heritageSites[index];
   refs.card.classList.add('loading');
+  refs.button.disabled = true;
+  refs.button.setAttribute('aria-busy', 'true');
 
   setTimeout(() => {
     refs.name.textContent = site.name;
@@ -98,10 +118,16 @@ function renderSite(index) {
     refs.category.textContent = site.category;
     refs.image.src = site.image;
     refs.image.alt = `${site.name}, ${site.location}`;
+    refs.favoriteButton.textContent = favoriteIndexes.has(index) ? 'Saved ✓' : 'Save favorite';
     refs.card.classList.remove('loading');
+    refs.button.disabled = false;
+    refs.button.removeAttribute('aria-busy');
+    setStatus(`Now exploring ${site.name}.`);
   }, 220);
 
   currentIndex = index;
+  const nextIndex = randomIndex(index);
+  preloadImage(heritageSites[nextIndex].image);
 }
 
 refs.button.addEventListener('click', () => {
@@ -121,4 +147,36 @@ refs.button.addEventListener('click', () => {
   );
 });
 
+refs.favoriteButton.addEventListener('click', () => {
+  if (currentIndex < 0) {
+    return;
+  }
+
+  const site = heritageSites[currentIndex];
+  if (favoriteIndexes.has(currentIndex)) {
+    favoriteIndexes.delete(currentIndex);
+    setStatus(`Removed ${site.name} from favorites.`);
+    refs.favoriteButton.textContent = 'Save favorite';
+  } else {
+    favoriteIndexes.add(currentIndex);
+    setStatus(`Saved ${site.name} to favorites.`);
+    refs.favoriteButton.textContent = 'Saved ✓';
+  }
+
+  localStorage.setItem(FAVORITES_KEY, JSON.stringify([...favoriteIndexes]));
+  updateFavoriteCount();
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === ' ' || event.key === 'Enter') {
+    event.preventDefault();
+    refs.button.click();
+  }
+  if (event.key.toLowerCase() === 'f') {
+    refs.favoriteButton.click();
+  }
+});
+
+updateFavoriteCount();
+setStatus('Tip: press Space/Enter to discover, F to favorite.');
 renderSite(randomIndex(currentIndex));
