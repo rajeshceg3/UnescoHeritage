@@ -211,6 +211,59 @@ h1 {
   line-height: 1.45;
 }
 
+.story-panel {
+  border: 1px solid var(--line);
+  border-radius: 0.95rem;
+  padding: 0.8rem 0.9rem;
+  background: rgba(255, 255, 255, 0.03);
+  display: grid;
+  gap: 0.55rem;
+}
+
+.story-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+}
+
+.lens-toggle {
+  display: inline-flex;
+  padding: 0.2rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.lens-btn {
+  font: inherit;
+  font-size: 0.76rem;
+  color: var(--muted);
+  border: none;
+  border-radius: 999px;
+  padding: 0.3rem 0.62rem;
+  background: transparent;
+  cursor: pointer;
+}
+
+.lens-btn.is-active {
+  color: var(--text);
+  background: color-mix(in srgb, var(--accent-soft) 78%, transparent 22%);
+}
+
+.lens-body {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.48;
+}
+
+.moments-list {
+  margin: 0.1rem 0 0;
+  padding: 0 0 0 1rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
 .nav-strip {
   display: grid;
   grid-template-columns: auto 1fr auto;
