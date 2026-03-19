@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>UNESCO Heritage • Zen Explorer</title>
+    <title>UNESCO Heritage • Immersive Explorer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -20,14 +20,13 @@
       <section class="delight-compass" aria-labelledby="delightHeading">
         <p class="compass-kicker">Design North Star</p>
         <h2 id="delightHeading">
-          “Is this the absolute delightful and joyful experience possible for a user?”
+          “Would anyone ask if this experience is artful, tasteful, and richly detailed—and hear an immediate yes?”
         </h2>
         <ul class="compass-list">
-          <li>Effortless: instant feedback, clear controls, zero confusion.</li>
-          <li>Inclusive: keyboard-friendly, accessible, and readable for everyone.</li>
-          <li>Emotionally rich: beauty, wonder, and a sense of discovery.</li>
-          <li>Reliable: graceful loading, resilient interactions, and safe fallbacks.</li>
-          <li>Continuously improving: save favorites and learn what users love.</li>
+          <li>Atmosphere first: every screen feels curated, cinematic, and intentional.</li>
+          <li>Context-rich storytelling: show meaning, not just names and dates.</li>
+          <li>Accessible delight: keyboard support, live feedback, and reduced-motion respect.</li>
+          <li>Reflective interaction: favorites persist, progress is visible, and state feels alive.</li>
         </ul>
       </section>
 
@@ -40,7 +39,11 @@
         </div>
 
         <div class="content-layer">
-          <p class="eyebrow">UNESCO World Heritage</p>
+          <header class="content-head">
+            <p class="eyebrow">UNESCO World Heritage</p>
+            <p id="categoryBadge" class="category-badge">Cultural</p>
+          </header>
+
           <h1 id="siteName">Loading…</h1>
           <p id="siteLocation" class="location"></p>
           <p id="siteDescription" class="description"></p>
@@ -51,22 +54,37 @@
               <p id="siteYear" class="meta-value"></p>
             </article>
             <article class="meta-pill">
-              <p class="meta-label">Category</p>
-              <p id="siteCategory" class="meta-value"></p>
+              <p class="meta-label">Best Season</p>
+              <p id="siteSeason" class="meta-value"></p>
+            </article>
+            <article class="meta-pill">
+              <p class="meta-label">Significance</p>
+              <p id="siteSignificance" class="meta-value"></p>
+            </article>
+            <article class="meta-pill">
+              <p class="meta-label">UNESCO Criteria</p>
+              <p id="siteCriteria" class="meta-value"></p>
             </article>
           </div>
+
+          <section class="highlight-panel" aria-labelledby="highlightHeading">
+            <p id="highlightHeading" class="meta-label">Highlights</p>
+            <ul id="siteHighlights" class="highlight-list"></ul>
+          </section>
 
           <div class="actions">
             <button id="shuffleBtn" class="shuffle-btn" type="button">
               <span>Discover another sanctuary</span>
               <span class="arrow">→</span>
             </button>
-            <button id="favoriteBtn" class="ghost-btn" type="button">
-              Save favorite
-            </button>
+            <button id="favoriteBtn" class="ghost-btn" type="button">Save favorite</button>
           </div>
-          <p id="favoriteCount" class="favorite-count" aria-live="polite"></p>
-          <p id="statusMessage" class="status-message" aria-live="polite"></p>
+
+          <section class="experience-footer" aria-label="Collection status">
+            <p id="favoriteCount" class="favorite-count" aria-live="polite"></p>
+            <p id="favoritesList" class="favorites-list" aria-live="polite"></p>
+            <p id="statusMessage" class="status-message" aria-live="polite"></p>
+          </section>
         </div>
       </section>
     </main>

@@ -4,6 +4,10 @@ const heritageSites = [
     location: 'Cusco Region, Peru',
     year: '1983',
     category: 'Cultural',
+    season: 'May–September',
+    significance: 'Inca astronomy + engineering',
+    criteria: ['i', 'iii', 'vii', 'ix'],
+    highlights: ['Temple of the Sun', 'Terraced cloud-forest ridges', 'Sun Gate dawn trail'],
     description:
       'Suspended between mist and mountain ridges, this Inca citadel creates a meditative rhythm of stone terraces, cosmic alignments, and cloud forests.',
     image:
@@ -14,6 +18,10 @@ const heritageSites = [
     location: 'Siem Reap, Cambodia',
     year: '1992',
     category: 'Cultural',
+    season: 'November–February',
+    significance: 'Khmer cosmology and sacred urbanism',
+    criteria: ['i', 'ii', 'iii', 'iv'],
+    highlights: ['Bayon stone faces', 'Angkor Wat galleries', 'Lotus pond reflections'],
     description:
       'A sacred choreography of temple towers and jungle silence, where lotus ponds, carved galleries, and sunrise reflections feel like a living mandala.',
     image:
@@ -24,6 +32,10 @@ const heritageSites = [
     location: 'Tanzania',
     year: '1981',
     category: 'Natural',
+    season: 'June–October',
+    significance: 'Planet-scale migration ecology',
+    criteria: ['vii', 'x'],
+    highlights: ['Great migration crossings', 'Acacia-silhouette horizons', 'Predator-prey seasonal cycles'],
     description:
       'An endless horizon of light and migration, where grasslands, acacia silhouettes, and wildlife movement unfold like a breathing planetary pulse.',
     image:
@@ -34,6 +46,10 @@ const heritageSites = [
     location: 'Dubrovnik, Croatia',
     year: '1979',
     category: 'Cultural',
+    season: 'April–June',
+    significance: 'Adriatic maritime republic heritage',
+    criteria: ['i', 'iii', 'iv'],
+    highlights: ['City walls promenade', 'Marble limestone streets', 'Baroque facades at sunset'],
     description:
       'A luminous Adriatic fortress city where marble streets, baroque facades, and sea-washed walls create an immersive atmosphere of calm grandeur.',
     image:
@@ -44,6 +60,10 @@ const heritageSites = [
     location: 'Queensland, Australia',
     year: '1981',
     category: 'Natural',
+    season: 'June–November',
+    significance: 'Largest coral ecosystem on Earth',
+    criteria: ['vii', 'viii', 'ix', 'x'],
+    highlights: ['Coral bommies and lagoons', 'Sea turtle migration', 'Outer-reef blue gradients'],
     description:
       'An underwater cathedral of color and motion, where coral architecture and translucent blue gradients deliver a serene, floating sense of wonder.',
     image:
@@ -54,6 +74,10 @@ const heritageSites = [
     location: 'Ma’an Governorate, Jordan',
     year: '1985',
     category: 'Cultural',
+    season: 'March–May',
+    significance: 'Nabataean trade and rock architecture',
+    criteria: ['i', 'iii', 'iv'],
+    highlights: ['The Siq approach', 'Al-Khazneh facade', 'Monastery plateau vistas'],
     description:
       'Rose-red facades emerging from canyon shadows compose a cinematic ritual of approach, revealing a timeless city carved directly into living stone.',
     image:
@@ -67,11 +91,16 @@ const refs = {
   location: document.getElementById('siteLocation'),
   description: document.getElementById('siteDescription'),
   year: document.getElementById('siteYear'),
-  category: document.getElementById('siteCategory'),
+  season: document.getElementById('siteSeason'),
+  significance: document.getElementById('siteSignificance'),
+  criteria: document.getElementById('siteCriteria'),
+  highlights: document.getElementById('siteHighlights'),
+  categoryBadge: document.getElementById('categoryBadge'),
   image: document.getElementById('siteImage'),
   button: document.getElementById('shuffleBtn'),
   favoriteButton: document.getElementById('favoriteBtn'),
   favoriteCount: document.getElementById('favoriteCount'),
+  favoritesList: document.getElementById('favoritesList'),
   statusMessage: document.getElementById('statusMessage')
 };
 
@@ -97,11 +126,35 @@ function preloadImage(url) {
 }
 
 function updateFavoriteCount() {
-  refs.favoriteCount.textContent = `Favorites saved: ${favoriteIndexes.size}`;
+  const completion = Math.round((favoriteIndexes.size / heritageSites.length) * 100);
+  refs.favoriteCount.textContent = `Favorites saved: ${favoriteIndexes.size}/${heritageSites.length} (${completion}% explored deeply)`;
+
+  if (favoriteIndexes.size === 0) {
+    refs.favoritesList.textContent = 'Curator list: none yet. Press F to save a site you love.';
+    return;
+  }
+
+  const names = [...favoriteIndexes].map((index) => heritageSites[index].name).slice(-3);
+  refs.favoritesList.textContent = `Curator list: ${names.join(' · ')}`;
 }
 
 function setStatus(message) {
   refs.statusMessage.textContent = message;
+}
+
+function accentForCategory(category) {
+  return category === 'Natural'
+    ? { accent: '#89e7d1', soft: 'rgba(137, 231, 209, 0.26)' }
+    : { accent: '#9bd1ff', soft: 'rgba(155, 209, 255, 0.24)' };
+}
+
+function renderHighlights(items) {
+  refs.highlights.innerHTML = '';
+  items.forEach((item) => {
+    const li = document.createElement('li');
+    li.textContent = item;
+    refs.highlights.append(li);
+  });
 }
 
 function renderSite(index) {
@@ -110,19 +163,28 @@ function renderSite(index) {
   refs.button.disabled = true;
   refs.button.setAttribute('aria-busy', 'true');
 
+  const accent = accentForCategory(site.category);
+  document.documentElement.style.setProperty('--accent', accent.accent);
+  document.documentElement.style.setProperty('--accent-soft', accent.soft);
+
   setTimeout(() => {
     refs.name.textContent = site.name;
     refs.location.textContent = site.location;
     refs.description.textContent = site.description;
     refs.year.textContent = site.year;
-    refs.category.textContent = site.category;
+    refs.season.textContent = site.season;
+    refs.significance.textContent = site.significance;
+    refs.criteria.textContent = site.criteria.map((criterion) => `(${criterion})`).join(' ');
+    refs.categoryBadge.textContent = site.category;
     refs.image.src = site.image;
     refs.image.alt = `${site.name}, ${site.location}`;
+    renderHighlights(site.highlights);
+
     refs.favoriteButton.textContent = favoriteIndexes.has(index) ? 'Saved ✓' : 'Save favorite';
     refs.card.classList.remove('loading');
     refs.button.disabled = false;
     refs.button.removeAttribute('aria-busy');
-    setStatus(`Now exploring ${site.name}.`);
+    setStatus(`Now exploring ${site.name}. Press Enter for another destination, F to toggle favorite.`);
   }, 220);
 
   currentIndex = index;
@@ -155,11 +217,11 @@ refs.favoriteButton.addEventListener('click', () => {
   const site = heritageSites[currentIndex];
   if (favoriteIndexes.has(currentIndex)) {
     favoriteIndexes.delete(currentIndex);
-    setStatus(`Removed ${site.name} from favorites.`);
+    setStatus(`Removed ${site.name} from your curator list.`);
     refs.favoriteButton.textContent = 'Save favorite';
   } else {
     favoriteIndexes.add(currentIndex);
-    setStatus(`Saved ${site.name} to favorites.`);
+    setStatus(`Saved ${site.name} to your curator list.`);
     refs.favoriteButton.textContent = 'Saved ✓';
   }
 
@@ -172,6 +234,7 @@ document.addEventListener('keydown', (event) => {
     event.preventDefault();
     refs.button.click();
   }
+
   if (event.key.toLowerCase() === 'f') {
     refs.favoriteButton.click();
   }
