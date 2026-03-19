@@ -98,15 +98,21 @@ const refs = {
   categoryBadge: document.getElementById('categoryBadge'),
   image: document.getElementById('siteImage'),
   button: document.getElementById('shuffleBtn'),
+  prevButton: document.getElementById('prevBtn'),
+  nextButton: document.getElementById('nextBtn'),
+  sitePosition: document.getElementById('sitePosition'),
   favoriteButton: document.getElementById('favoriteBtn'),
   favoriteCount: document.getElementById('favoriteCount'),
   favoritesList: document.getElementById('favoritesList'),
-  statusMessage: document.getElementById('statusMessage')
+  statusMessage: document.getElementById('statusMessage'),
+  contentLayer: document.querySelector('.content-layer')
 };
 
 let currentIndex = -1;
 const FAVORITES_KEY = 'unesco-favorites';
 const favoriteIndexes = new Set(JSON.parse(localStorage.getItem(FAVORITES_KEY) ?? '[]'));
+let touchStartX = 0;
+let touchDeltaX = 0;
 
 function randomIndex(exclude) {
   if (heritageSites.length < 2) {
@@ -157,7 +163,16 @@ function renderHighlights(items) {
   });
 }
 
-function renderSite(index) {
+function updatePosition(index) {
+  refs.sitePosition.textContent = `${index + 1} / ${heritageSites.length}`;
+}
+
+function pulseLayer() {
+  refs.contentLayer.classList.remove('is-transitioning');
+  requestAnimationFrame(() => refs.contentLayer.classList.add('is-transitioning'));
+}
+
+function renderSite(index, direction = 'next') {
   const site = heritageSites[index];
   refs.card.classList.add('loading');
   refs.button.disabled = true;
@@ -168,6 +183,7 @@ function renderSite(index) {
   document.documentElement.style.setProperty('--accent-soft', accent.soft);
 
   setTimeout(() => {
+    refs.card.dataset.direction = direction;
     refs.name.textContent = site.name;
     refs.location.textContent = site.location;
     refs.description.textContent = site.description;
@@ -181,11 +197,13 @@ function renderSite(index) {
     renderHighlights(site.highlights);
 
     refs.favoriteButton.textContent = favoriteIndexes.has(index) ? 'Saved ✓' : 'Save favorite';
+    updatePosition(index);
+    pulseLayer();
     refs.card.classList.remove('loading');
     refs.button.disabled = false;
     refs.button.removeAttribute('aria-busy');
-    setStatus(`Now exploring ${site.name}. Press Enter for another destination, F to toggle favorite.`);
-  }, 220);
+    setStatus(`Now exploring ${site.name}. Swipe or use ←/→ to navigate, Enter for surprise, F to toggle favorite.`);
+  }, 170);
 
   currentIndex = index;
   const nextIndex = randomIndex(index);
@@ -193,7 +211,7 @@ function renderSite(index) {
 }
 
 refs.button.addEventListener('click', () => {
-  renderSite(randomIndex(currentIndex));
+  renderSite(randomIndex(currentIndex), 'next');
 
   refs.button.animate(
     [
@@ -208,6 +226,18 @@ refs.button.addEventListener('click', () => {
     }
   );
 });
+
+function stepSite(step) {
+  if (currentIndex < 0) {
+    return;
+  }
+
+  const nextIndex = (currentIndex + step + heritageSites.length) % heritageSites.length;
+  renderSite(nextIndex, step < 0 ? 'prev' : 'next');
+}
+
+refs.prevButton.addEventListener('click', () => stepSite(-1));
+refs.nextButton.addEventListener('click', () => stepSite(1));
 
 refs.favoriteButton.addEventListener('click', () => {
   if (currentIndex < 0) {
@@ -230,6 +260,16 @@ refs.favoriteButton.addEventListener('click', () => {
 });
 
 document.addEventListener('keydown', (event) => {
+  if (event.key === 'ArrowLeft') {
+    event.preventDefault();
+    stepSite(-1);
+  }
+
+  if (event.key === 'ArrowRight') {
+    event.preventDefault();
+    stepSite(1);
+  }
+
   if (event.key === ' ' || event.key === 'Enter') {
     event.preventDefault();
     refs.button.click();
@@ -240,6 +280,22 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
+refs.card.addEventListener('touchstart', (event) => {
+  touchStartX = event.changedTouches[0].clientX;
+  touchDeltaX = 0;
+});
+
+refs.card.addEventListener('touchmove', (event) => {
+  touchDeltaX = event.changedTouches[0].clientX - touchStartX;
+});
+
+refs.card.addEventListener('touchend', () => {
+  if (Math.abs(touchDeltaX) < 45) {
+    return;
+  }
+  stepSite(touchDeltaX > 0 ? -1 : 1);
+});
+
 updateFavoriteCount();
-setStatus('Tip: press Space/Enter to discover, F to favorite.');
-renderSite(randomIndex(currentIndex));
+setStatus('Tip: swipe or use ←/→ to navigate. Press Space/Enter to discover and F to favorite.');
+renderSite(randomIndex(currentIndex), 'next');
