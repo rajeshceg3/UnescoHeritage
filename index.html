@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UNESCO Heritage • Zen Explorer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Playfair+Display:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="ambient-glow" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+
+    <main class="app-shell">
+      <section class="hero-card" id="heroCard">
+        <div class="image-stack">
+          <img id="siteImage" class="site-image" alt="UNESCO site" />
+          <div class="image-vignette"></div>
+          <div class="floating-orb orb-one"></div>
+          <div class="floating-orb orb-two"></div>
+        </div>
+
+        <div class="content-layer">
+          <p class="eyebrow">UNESCO World Heritage</p>
+          <h1 id="siteName">Loading…</h1>
+          <p id="siteLocation" class="location"></p>
+          <p id="siteDescription" class="description"></p>
+
+          <div class="meta-grid">
+            <article class="meta-pill">
+              <p class="meta-label">Inscribed</p>
+              <p id="siteYear" class="meta-value"></p>
+            </article>
+            <article class="meta-pill">
+              <p class="meta-label">Category</p>
+              <p id="siteCategory" class="meta-value"></p>
+            </article>
+          </div>
+
+          <button id="shuffleBtn" class="shuffle-btn" type="button">
+            <span>Discover another sanctuary</span>
+            <span class="arrow">→</span>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
