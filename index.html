@@ -72,6 +72,26 @@
             <ul id="siteHighlights" class="highlight-list"></ul>
           </section>
 
+          <section class="story-panel" aria-labelledby="storyHeading">
+            <div class="story-head">
+              <p id="storyHeading" class="meta-label">Immersion lens</p>
+              <div class="lens-toggle" role="tablist" aria-label="Choose story lens">
+                <button id="lensSenseBtn" class="lens-btn is-active" role="tab" aria-selected="true" type="button">
+                  Sense
+                </button>
+                <button id="lensStoryBtn" class="lens-btn" role="tab" aria-selected="false" type="button">
+                  Story
+                </button>
+                <button id="lensRitualBtn" class="lens-btn" role="tab" aria-selected="false" type="button">
+                  Ritual
+                </button>
+              </div>
+            </div>
+            <p id="lensBody" class="lens-body"></p>
+            <p id="momentsLabel" class="meta-label">2-minute moments</p>
+            <ol id="microMoments" class="moments-list"></ol>
+          </section>
+
           <nav class="nav-strip" aria-label="Site navigation">
             <button id="prevBtn" class="nav-btn" type="button" aria-label="Previous destination">← Previous</button>
             <div class="nav-indicator" aria-hidden="true">

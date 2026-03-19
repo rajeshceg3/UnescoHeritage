@@ -8,6 +8,12 @@ const heritageSites = [
     significance: 'Inca astronomy + engineering',
     criteria: ['i', 'iii', 'vii', 'ix'],
     highlights: ['Temple of the Sun', 'Terraced cloud-forest ridges', 'Sun Gate dawn trail'],
+    lenses: {
+      sense: 'Crisp mountain air, wet stone under your fingertips, and quiet wind passing terraces before the morning crowds arrive.',
+      story: 'An Inca citadel designed as both sanctuary and observatory, where architecture maps celestial rhythm into daily life.',
+      ritual: 'Start at first light, pause silently at the Sun Gate, then descend terrace by terrace to read the landscape like a ceremony.'
+    },
+    moments: ['Breathe for 20 seconds at a lookout and map three mountain layers.', 'Trace one carved edge with your eyes to notice precision.', 'Close your eyes and listen for wind, birds, and footsteps in sequence.'],
     description:
       'Suspended between mist and mountain ridges, this Inca citadel creates a meditative rhythm of stone terraces, cosmic alignments, and cloud forests.',
     image:
@@ -22,6 +28,12 @@ const heritageSites = [
     significance: 'Khmer cosmology and sacred urbanism',
     criteria: ['i', 'ii', 'iii', 'iv'],
     highlights: ['Bayon stone faces', 'Angkor Wat galleries', 'Lotus pond reflections'],
+    lenses: {
+      sense: 'Humidity, incense, and jungle birds frame sandstone corridors lit by moving bands of sun.',
+      story: 'Angkor is a sacred urban universe where power, devotion, and engineering converge in temple cities.',
+      ritual: 'Arrive at dawn for reflection pools, then walk shaded galleries slowly to read stories carved in bas-relief.'
+    },
+    moments: ['Find one bas-relief scene and identify movement in the figures.', 'Notice how trees and stones coexist at one corner.', 'Pause by water and watch how temple geometry mirrors in ripples.'],
     description:
       'A sacred choreography of temple towers and jungle silence, where lotus ponds, carved galleries, and sunrise reflections feel like a living mandala.',
     image:
@@ -36,6 +48,12 @@ const heritageSites = [
     significance: 'Planet-scale migration ecology',
     criteria: ['vii', 'x'],
     highlights: ['Great migration crossings', 'Acacia-silhouette horizons', 'Predator-prey seasonal cycles'],
+    lenses: {
+      sense: 'Dry grass scent, low thunder from hooves, and sweeping skies that make every sound feel amplified.',
+      story: 'A living system of migration, predation, and renewal that shows nature as movement rather than still scenery.',
+      ritual: 'Scan the horizon in 360°, track one herd for several minutes, and note how birds signal where life gathers.'
+    },
+    moments: ['Spot one herd and follow its direction without zooming first.', 'Count five distinct sounds before speaking.', 'Watch cloud shadows move across grasslands for one minute.'],
     description:
       'An endless horizon of light and migration, where grasslands, acacia silhouettes, and wildlife movement unfold like a breathing planetary pulse.',
     image:
@@ -50,6 +68,12 @@ const heritageSites = [
     significance: 'Adriatic maritime republic heritage',
     criteria: ['i', 'iii', 'iv'],
     highlights: ['City walls promenade', 'Marble limestone streets', 'Baroque facades at sunset'],
+    lenses: {
+      sense: 'Sea salt in the air, bright stone under sunlight, and distant bells bouncing through narrow lanes.',
+      story: 'A resilient maritime republic whose walls and squares preserve centuries of Adriatic diplomacy and trade.',
+      ritual: 'Walk the walls before noon, then descend into side alleys to feel the city shift from monument to neighborhood.'
+    },
+    moments: ['Touch a cool limestone wall and compare sunlit versus shaded tones.', 'Find a narrow lane and follow it without checking a map.', 'Pause at a high point and trace the line where sea meets fortifications.'],
     description:
       'A luminous Adriatic fortress city where marble streets, baroque facades, and sea-washed walls create an immersive atmosphere of calm grandeur.',
     image:
@@ -64,6 +88,12 @@ const heritageSites = [
     significance: 'Largest coral ecosystem on Earth',
     criteria: ['vii', 'viii', 'ix', 'x'],
     highlights: ['Coral bommies and lagoons', 'Sea turtle migration', 'Outer-reef blue gradients'],
+    lenses: {
+      sense: 'Salt on skin, filtered turquoise light, and the muffled crackle of reef life beneath the surface.',
+      story: 'The reef is an immense living architecture built by coral communities over millennia.',
+      ritual: 'Begin with shallow observation, identify three coral textures, then drift slowly to notice color gradients.'
+    },
+    moments: ['Look for one color family changing across depth.', 'Watch fish movement around a coral head for 30 seconds.', 'Surface and describe the quiet before speaking loudly.'],
     description:
       'An underwater cathedral of color and motion, where coral architecture and translucent blue gradients deliver a serene, floating sense of wonder.',
     image:
@@ -78,6 +108,12 @@ const heritageSites = [
     significance: 'Nabataean trade and rock architecture',
     criteria: ['i', 'iii', 'iv'],
     highlights: ['The Siq approach', 'Al-Khazneh facade', 'Monastery plateau vistas'],
+    lenses: {
+      sense: 'Warm canyon air, echoing footsteps, and pink sandstone glowing differently with each turn.',
+      story: 'A Nabataean crossroads of trade where carved facades announced wealth, ritual, and global exchange.',
+      ritual: 'Enter through the Siq slowly, delay your first photo, and let the Treasury reveal itself as a staged arrival.'
+    },
+    moments: ['Walk one stretch in silence to feel echo and scale.', 'Notice one carved detail before viewing the full facade.', 'At a vista, identify how shadow reshapes cliff textures.'],
     description:
       'Rose-red facades emerging from canyon shadows compose a cinematic ritual of approach, revealing a timeless city carved directly into living stone.',
     image:
@@ -105,7 +141,14 @@ const refs = {
   favoriteCount: document.getElementById('favoriteCount'),
   favoritesList: document.getElementById('favoritesList'),
   statusMessage: document.getElementById('statusMessage'),
-  contentLayer: document.querySelector('.content-layer')
+  contentLayer: document.querySelector('.content-layer'),
+  lensBody: document.getElementById('lensBody'),
+  moments: document.getElementById('microMoments'),
+  lensButtons: {
+    sense: document.getElementById('lensSenseBtn'),
+    story: document.getElementById('lensStoryBtn'),
+    ritual: document.getElementById('lensRitualBtn')
+  }
 };
 
 let currentIndex = -1;
@@ -113,6 +156,7 @@ const FAVORITES_KEY = 'unesco-favorites';
 const favoriteIndexes = new Set(JSON.parse(localStorage.getItem(FAVORITES_KEY) ?? '[]'));
 let touchStartX = 0;
 let touchDeltaX = 0;
+let activeLens = 'sense';
 
 function randomIndex(exclude) {
   if (heritageSites.length < 2) {
@@ -163,6 +207,24 @@ function renderHighlights(items) {
   });
 }
 
+function renderMoments(items) {
+  refs.moments.innerHTML = '';
+  items.forEach((item) => {
+    const li = document.createElement('li');
+    li.textContent = item;
+    refs.moments.append(li);
+  });
+}
+
+function renderLens(site) {
+  refs.lensBody.textContent = site.lenses[activeLens];
+  Object.entries(refs.lensButtons).forEach(([key, button]) => {
+    const selected = key === activeLens;
+    button.classList.toggle('is-active', selected);
+    button.setAttribute('aria-selected', String(selected));
+  });
+}
+
 function updatePosition(index) {
   refs.sitePosition.textContent = `${index + 1} / ${heritageSites.length}`;
 }
@@ -195,6 +257,8 @@ function renderSite(index, direction = 'next') {
     refs.image.src = site.image;
     refs.image.alt = `${site.name}, ${site.location}`;
     renderHighlights(site.highlights);
+    renderMoments(site.moments);
+    renderLens(site);
 
     refs.favoriteButton.textContent = favoriteIndexes.has(index) ? 'Saved ✓' : 'Save favorite';
     updatePosition(index);
@@ -259,6 +323,17 @@ refs.favoriteButton.addEventListener('click', () => {
   updateFavoriteCount();
 });
 
+Object.entries(refs.lensButtons).forEach(([lens, button]) => {
+  button.addEventListener('click', () => {
+    activeLens = lens;
+    if (currentIndex >= 0) {
+      const site = heritageSites[currentIndex];
+      renderLens(site);
+      setStatus(`Lens changed to ${lens}.`);
+    }
+  });
+});
+
 document.addEventListener('keydown', (event) => {
   if (event.key === 'ArrowLeft') {
     event.preventDefault();
@@ -277,6 +352,12 @@ document.addEventListener('keydown', (event) => {
 
   if (event.key.toLowerCase() === 'f') {
     refs.favoriteButton.click();
+  }
+
+  if (['1', '2', '3'].includes(event.key)) {
+    const lensMap = { '1': 'sense', '2': 'story', '3': 'ritual' };
+    const targetLens = lensMap[event.key];
+    refs.lensButtons[targetLens].click();
   }
 });
 
