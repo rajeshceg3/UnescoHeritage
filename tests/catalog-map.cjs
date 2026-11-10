@@ -17,9 +17,11 @@ const { chromium } = require("playwright"),
       await new Promise((resolve) => setTimeout(resolve, 1800));
       await r.continue();
     });
-    await p.goto(base, { waitUntil: "domcontentloaded" });
+    await p.goto(base + "#site=252", { waitUntil: "domcontentloaded" });
     await p.waitForFunction(
-      () => !document.querySelector("#favoriteBtn").disabled,
+      () =>
+        document.querySelector("#siteName").textContent === "Taj Mahal" &&
+        !document.querySelector("#favoriteBtn").disabled,
     );
     const before = await p.locator("#siteImage").boundingBox();
     await p.locator("#siteImage").evaluate((e) => e.decode());
@@ -36,7 +38,7 @@ const { chromium } = require("playwright"),
     await p.close();
     const e = await b.newPage();
     await e.route("**/world.svg", (r) => r.abort());
-    await e.goto(base);
+    await e.goto(base + "#site=252");
     await e.waitForFunction(() =>
       document
         .querySelector("#map-country")

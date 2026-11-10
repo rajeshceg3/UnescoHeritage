@@ -1,0 +1,42 @@
+[
+  {
+    "w": 320,
+    "scheme": "light",
+    "errors": []
+  },
+  {
+    "w": 320,
+    "scheme": "dark",
+    "errors": []
+  },
+  {
+    "w": 390,
+    "scheme": "light",
+    "errors": []
+  },
+  {
+    "w": 390,
+    "scheme": "dark",
+    "errors": []
+  },
+  {
+    "w": 844,
+    "scheme": "light",
+    "errors": []
+  },
+  {
+    "w": 844,
+    "scheme": "dark",
+    "errors": []
+  },
+  {
+    "w": 1320,
+    "scheme": "light",
+    "errors": []
+  },
+  {
+    "w": 1320,
+    "scheme": "dark",
+    "errors": []
+  }
+]

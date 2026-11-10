@@ -8,7 +8,7 @@
   </head>
   <body>
     <header class="masthead">
-      <a href="./" class="brand">heritage<span>A SMALL FIELD GUIDE</span></a
+      <a href="./" class="brand">heritage</a
       ><button
         id="collection-toggle"
         type="button"
@@ -66,36 +66,66 @@
       </section>
       <section class="hero-card" id="heroCard" aria-labelledby="siteName">
         <div class="content-layer">
-          <div class="place-heading">
-            <p class="eyebrow">Places worth understanding</p>
-            <span id="place-number" aria-hidden="true">01</span>
-          </div>
-          <div class="place-intro">
-            <header class="content-head">
-              <p id="siteLocation" class="location"></p>
-              <p id="categoryBadge" class="category-badge"></p>
-            </header>
-            <h1 id="siteName" tabindex="-1">A world worth understanding.</h1>
-            <p id="siteDescription" class="description"></p>
-          </div>
-          <figure class="image-stack">
-            <img
-              id="siteImage"
-              width="900"
-              height="450"
-              src="assets/world.svg"
-              alt="World locator map"
-            />
-            <figcaption>
-              <span id="map-country"></span
-              ><span>REPRESENTATIVE POINT · NOT BOUNDARIES</span>
-            </figcaption>
-            <svg class="map-point" viewBox="0 0 900 450" aria-hidden="true">
-              <circle id="point-ring" r="14" />
-              <circle id="point-dot" r="4" />
-            </svg>
-          </figure>
-          <div class="place-action">
+          <div class="story-layout">
+            <figure class="story-art" id="storyArt">
+              <div
+                id="storyArtInner"
+                class="story-art-inner"
+                role="img"
+                aria-label=""
+                hidden
+              ></div>
+              <img
+                id="siteImage"
+                width="900"
+                height="450"
+                src="assets/world.svg"
+                alt="World locator map"
+              />
+              <svg class="map-point" viewBox="0 0 900 450" aria-hidden="true">
+                <circle id="point-ring" r="14" />
+                <circle id="point-dot" r="4" />
+              </svg>
+              <figcaption>
+                <span id="map-country"></span
+                ><span id="map-caveat">REPRESENTATIVE POINT · NOT BOUNDARIES</span>
+              </figcaption>
+            </figure>
+            <div class="story-side">
+              <header class="content-head">
+                <p id="siteLocation" class="location"></p>
+                <p id="categoryBadge" class="category-badge"></p>
+              </header>
+              <h1 id="siteName" tabindex="-1">A world worth understanding.</h1>
+              <p
+                id="storyCaption"
+                class="story-caption"
+                aria-live="polite"
+                hidden
+              ></p>
+              <p id="siteDescription" class="description"></p>
+              <div class="beat-row" id="beatRow" hidden>
+                <div
+                  class="beat-dots"
+                  id="beatDots"
+                  role="tablist"
+                  aria-label="Story beats"
+                ></div>
+                <button id="beatBack" type="button" class="quiet-btn">
+                  ← Back
+                </button>
+                <button id="beatNext" type="button" class="cta-btn">
+                  Next beat →
+                </button>
+                <button
+                  id="beatPlay"
+                  type="button"
+                  class="quiet-btn play-btn"
+                  aria-label="Play the story"
+                  >▶</button
+                >
+              </div>
+              <div class="place-action">
             <button
               id="read-place"
               type="button"
@@ -104,6 +134,20 @@
             >
               Read the place <span aria-hidden="true">↓</span></button
             ><button id="favoriteBtn" type="button">Save favorite</button>
+              </div>
+              <nav class="nav-strip" aria-label="Place navigation">
+                <button
+                  id="prevBtn"
+                  type="button"
+                  aria-label="Previous destination"
+                >
+                  ← Previous</button
+                ><span id="sitePosition"></span
+                ><button id="nextBtn" type="button" aria-label="Next destination">
+                  Next place ↗
+                </button>
+              </nav>
+            </div>
           </div>
           <section id="place-notes" hidden aria-label="Field notes">
             <div class="notes-intro">
@@ -159,21 +203,13 @@
                 </p>
                 <ol id="microMoments"></ol>
               </details>
+              <details class="word-list" id="wordListWrap" hidden>
+                <summary>Words in the drawings</summary>
+                <dl id="wordList"></dl>
+              </details>
             </section>
           </section>
-          <nav class="nav-strip" aria-label="Place navigation">
-            <button
-              id="prevBtn"
-              type="button"
-              aria-label="Previous destination"
-            >
-              ← Previous</button
-            ><span id="sitePosition"></span
-            ><button id="nextBtn" type="button" aria-label="Next destination">
-              Next place ↗
-            </button>
-          </nav>
-          <p id="statusMessage" role="status" aria-live="polite">
+          <p id="statusMessage" class="sr-only" role="status" aria-live="polite">
             Opening the catalog…
           </p>
           <button id="retry-catalog" type="button" hidden>
@@ -242,6 +278,7 @@
       </footer>
     </main>
     <script src="curated.js" defer></script>
+    <script src="stories.js" defer></script>
     <script src="script.js" defer></script>
   </body>
 </html>
