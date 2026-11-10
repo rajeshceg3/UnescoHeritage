@@ -17,9 +17,11 @@ const { chromium } = require("playwright"),
       await new Promise((resolve) => setTimeout(resolve, 1800));
       await r.continue();
     });
-    await p.goto(base, { waitUntil: "domcontentloaded" });
+    await p.goto(base + "#site=252", { waitUntil: "domcontentloaded" });
     await p.waitForFunction(
-      () => !document.querySelector("#favoriteBtn").disabled,
+      () =>
+        document.querySelector("#siteName").textContent === "Taj Mahal" &&
+        !document.querySelector("#favoriteBtn").disabled,
     );
     const before = await p.locator("#siteImage").boundingBox();
     await p.locator("#siteImage").evaluate((e) => e.decode());
@@ -27,7 +29,7 @@ const { chromium } = require("playwright"),
     assert.equal(before.height, after.height);
     const dims = await p.evaluate(() => {
       const a = document.querySelector("#siteImage").getBoundingClientRect(),
-        b = document.querySelector(".map-point").getBoundingClientRect();
+        b = document.querySelector(".story-art .map-point").getBoundingClientRect();
       return { iw: a.width, ih: a.height, sw: b.width, sh: b.height };
     });
     assert.ok(
@@ -36,7 +38,7 @@ const { chromium } = require("playwright"),
     await p.close();
     const e = await b.newPage();
     await e.route("**/world.svg", (r) => r.abort());
-    await e.goto(base);
+    await e.goto(base + "#site=252");
     await e.waitForFunction(() =>
       document
         .querySelector("#map-country")
@@ -44,7 +46,7 @@ const { chromium } = require("playwright"),
     );
     await e.locator("#read-place").click();
     assert.equal(await e.locator("#place-notes").isVisible(), true);
-    assert.equal(await e.locator(".map-point").isVisible(), false);
+    assert.equal(await e.locator(".story-art .map-point").isVisible(), false);
     await e.close();
     console.log(
       "slow map reserves final geometry, overlay aligned, failed map leaves notes usable",

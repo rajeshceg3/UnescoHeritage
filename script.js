@@ -9,7 +9,9 @@ let catalog = [],
   offset = 0,
   activeLens = 0,
   ready = false,
-  mapFailed = false;
+  mapFailed = false,
+  beat = 1,
+  beatTimer = null;
 const normalize = (s) =>
   s
     .normalize("NFD")
@@ -42,6 +44,7 @@ const position = () => {
       : `${i + 1} / ${view.length.toLocaleString("en")}`;
 };
 const status = (s) => ($("statusMessage").textContent = s);
+const storyOf = (s) => (s ? STORIES[s.id] || null : null);
 const closeNotes = () => {
   $("place-notes").hidden = true;
   $("read-place").setAttribute("aria-expanded", "false");
@@ -50,6 +53,7 @@ const closeNotes = () => {
   $("official-description").open = false;
   document.querySelector(".reflection").open = false;
   document.querySelector(".reference").open = false;
+  $("wordListWrap").open = false;
 };
 function closeBrowse(focus = false) {
   $("collection").hidden = true;
@@ -129,9 +133,63 @@ function lens() {
     if (i === activeLens) $("lensBody").setAttribute("aria-labelledby", b.id);
   });
 }
+function stopPlay() {
+  if (beatTimer) clearInterval(beatTimer);
+  beatTimer = null;
+  $("beatPlay").textContent = "▶";
+  $("beatPlay").setAttribute("aria-label", "Play the story");
+}
+function setBeat(n, story) {
+  story = story || storyOf(current);
+  if (!story) return;
+  beat = Math.min(Math.max(n, 1), story.beats.length);
+  const inner = $("storyArtInner");
+  inner.dataset.beat = String(beat);
+  [...inner.querySelectorAll(".beat-layer")].forEach((g) => {
+    const b = Number(g.className.baseVal.match(/beat-(\d)/)?.[1] || 1);
+    g.classList.toggle("on", b <= beat);
+  });
+  $("storyCaption").textContent = story.beats[beat - 1].caption;
+  inner.setAttribute(
+    "aria-label",
+    `${current.name}, beat ${beat} of ${story.beats.length}: ${story.beats[beat - 1].caption}`,
+  );
+  [...$("beatDots").children].forEach((d, i) => {
+    d.setAttribute("aria-selected", String(i + 1 === beat));
+    d.tabIndex = i + 1 === beat ? 0 : -1;
+  });
+  $("beatBack").disabled = beat === 1;
+  const atEnd = beat === story.beats.length;
+  $("beatNext").disabled = false;
+  $("beatNext").textContent = atEnd ? "↺ Replay" : "Next beat →";
+  $("beatNext").classList.toggle("replay", atEnd);
+  if (atEnd) stopPlay();
+}
+function renderStoryArt(story) {
+  const inner = $("storyArtInner");
+  inner.innerHTML = `<svg viewBox="0 0 900 600" aria-hidden="false">${story.svg}</svg>`;
+  const dots = $("beatDots");
+  dots.replaceChildren();
+  story.beats.forEach((_, i) => {
+    const d = document.createElement("button");
+    d.type = "button";
+    d.className = "beat-dot";
+    d.setAttribute("role", "tab");
+    d.setAttribute("aria-label", `Beat ${i + 1} of ${story.beats.length}`);
+    d.onclick = () => {
+      stopPlay();
+      setBeat(i + 1, story);
+    };
+    dots.append(d);
+  });
+  document.documentElement.style.setProperty("--accent", story.accent);
+  document.documentElement.style.setProperty("--accent-dark", story.accentDark);
+  setBeat(1, story);
+}
 function renderSite(s, focus = false) {
   current = s;
   closeNotes();
+  stopPlay();
   $("siteName").textContent = s.name;
   $("siteName").classList.toggle("long-title", s.name.length > 110);
   $("siteLocation").textContent = s.countries.join(" · ");
@@ -147,9 +205,9 @@ function renderSite(s, focus = false) {
   $("siteYear").textContent = s.year || "Not supplied";
   $("siteCriteria").textContent = s.criteria || "Not supplied in this snapshot";
   $("site-source").href = `https://whc.unesco.org/en/list/${s.id}/`;
-  $("place-number").textContent = "";
   position();
   const custom = curatedSites[LEGACY.indexOf(s.id)];
+  const story = storyOf(s);
   $("siteSignificance").textContent = custom?.significance || "A closer look";
   $("siteHighlights").replaceChildren();
   (
@@ -177,27 +235,78 @@ function renderSite(s, focus = false) {
       li.textContent = t;
       $("microMoments").append(li);
     });
+  const wl = $("wordList");
+  wl.replaceChildren();
+  if (story?.terms?.length) {
+    story.terms.forEach(([term, meaning]) => {
+      const dt = document.createElement("dt");
+      dt.textContent = term;
+      const dd = document.createElement("dd");
+      dd.textContent = meaning;
+      wl.append(dt, dd);
+    });
+    $("wordListWrap").hidden = false;
+  } else {
+    $("wordListWrap").hidden = true;
+  }
   activeLens = 0;
   lens();
-  const point = s.point;
-  document.querySelector(".map-point").toggleAttribute("hidden", !point);
-  $("map-country").textContent = point
-    ? "UNESCO reference coordinate"
-    : "No reference coordinate supplied";
-  if (point) {
-    for (const id of ["point-ring", "point-dot"]) {
-      $(id).setAttribute("cx", (point.lon + 180) * 2.5);
-      $(id).setAttribute("cy", (90 - point.lat) * 2.5);
+  if (story) {
+    $("storyArtInner").hidden = false;
+    $("storyCaption").hidden = false;
+    $("beatRow").hidden = false;
+    $("siteDescription").hidden = true;
+    $("siteImage").hidden = true;
+    document.querySelector(".map-point").setAttribute("hidden", "");
+    $("storyArt").classList.add("illustrated");
+    $("map-country").textContent = "";
+    $("map-caveat").hidden = true;
+    const rp = s.point;
+    $("refMap").hidden = mapFailed || !rp;
+    if (rp) {
+      for (const id of ["ref-point-ring", "ref-point-dot"]) {
+        $(id).setAttribute("cx", (rp.lon + 180) * 2.5);
+        $(id).setAttribute("cy", (90 - rp.lat) * 2.5);
+      }
+      $("refMapImg").alt = `World locator with a representative point for ${s.name}. Not property boundaries.`;
+      $("refMapCountry").textContent =
+        "UNESCO reference coordinate · not boundaries";
     }
+    renderStoryArt(story);
+  } else {
+    $("storyArtInner").hidden = true;
+    $("storyArtInner").replaceChildren();
+    $("storyCaption").hidden = true;
+    $("beatRow").hidden = true;
+    $("siteDescription").hidden = false;
+    $("storyArt").classList.remove("illustrated");
+    $("map-caveat").hidden = false;
+    document.documentElement.style.setProperty(
+      "--accent",
+      s.category === "Natural" ? "#385b4a" : "#665038",
+    );
+    document.documentElement.style.setProperty(
+      "--accent-dark",
+      s.category === "Natural" ? "#7fa48c" : "#c4a375",
+    );
+    const point = s.point;
+    document.querySelector(".map-point").toggleAttribute("hidden", !point);
+    $("map-country").textContent = point
+      ? "UNESCO reference coordinate"
+      : "No reference coordinate supplied";
+    if (point) {
+      for (const id of ["point-ring", "point-dot"]) {
+        $(id).setAttribute("cx", (point.lon + 180) * 2.5);
+        $(id).setAttribute("cy", (90 - point.lat) * 2.5);
+      }
+    }
+    $("siteImage").alt = point
+      ? `World locator with a representative point for ${s.name}. Not property boundaries.`
+      : `World reference map; no point is supplied for this property.`;
+    $("siteImage").hidden = mapFailed;
+    $("refMap").hidden = true;
   }
-  $("siteImage").alt = point
-    ? `World locator with a representative point for ${s.name}. Not property boundaries.`
-    : "World reference map; no point is supplied for this property.";
   if (mapFailed) showMapFailure();
-  document.documentElement.style.setProperty(
-    "--accent",
-    s.category === "Natural" ? "#385b4a" : "#665038",
-  );
   $("nextBtn").disabled = view.length < 2;
   $("prevBtn").disabled = view.length < 2;
   countSaved();
@@ -337,6 +446,7 @@ $("favoriteBtn").onclick = () => {
       localStorage.setItem("unesco-favorites-ids", JSON.stringify(extra));
     }
     filterSites();
+    countSaved();
     status(
       saved(id)
         ? "Place saved in this browser."
@@ -363,7 +473,57 @@ $("read-place").onclick = () => {
     $("place-notes").scrollIntoView({ block: "start", behavior: "instant" });
   }
 };
-const tabs = [...document.querySelectorAll("[role=tab]")];
+$("beatNext").onclick = () => {
+  stopPlay();
+  const story = storyOf(current);
+  setBeat(story && beat === story.beats.length ? 1 : beat + 1);
+};
+$("beatBack").onclick = () => {
+  stopPlay();
+  setBeat(beat - 1);
+};
+$("beatPlay").onclick = () => {
+  const story = storyOf(current);
+  if (!story) return;
+  if (beatTimer) {
+    stopPlay();
+    return;
+  }
+  if (beat === story.beats.length) setBeat(1, story);
+  $("beatPlay").textContent = "❚❚";
+  $("beatPlay").setAttribute("aria-label", "Pause the story");
+  beatTimer = setInterval(() => {
+    if (!storyOf(current) || beat >= story.beats.length) {
+      stopPlay();
+      return;
+    }
+    setBeat(beat + 1, story);
+  }, 4000);
+};
+$("storyArt").addEventListener(
+  "touchstart",
+  (e) => {
+    if (!storyOf(current) || e.touches.length !== 1) return;
+    $("storyArt")._touchX = e.touches[0].clientX;
+  },
+  { passive: true },
+);
+$("storyArt").addEventListener(
+  "touchend",
+  (e) => {
+    const x0 = $("storyArt")._touchX;
+    if (x0 == null || !storyOf(current)) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    $("storyArt")._touchX = null;
+    if (Math.abs(dx) < 40) return;
+    stopPlay();
+    setBeat(beat + (dx < 0 ? 1 : -1));
+  },
+  { passive: true },
+);
+const tabs = [...document.querySelectorAll("[role=tab]")].filter(
+  (b) => b.closest(".lens-toggle"),
+);
 tabs.forEach((b, i) => {
   b.onclick = () => {
     activeLens = i;
@@ -384,10 +544,12 @@ tabs.forEach((b, i) => {
 });
 function showMapFailure() {
   mapFailed = true;
-  $("siteImage").hidden = true;
-  document.querySelector(".map-point").setAttribute("hidden", "");
-  $("map-country").textContent =
-    "Map unavailable. The description and source remain usable.";
+  if (!storyOf(current)) {
+    $("siteImage").hidden = true;
+    document.querySelector(".map-point").setAttribute("hidden", "");
+    $("map-country").textContent =
+      "Map unavailable. The description and source remain usable.";
+  }
 }
 $("siteImage").onerror = showMapFailure;
 if ($("siteImage").complete && !$("siteImage").naturalWidth) showMapFailure();
@@ -415,11 +577,13 @@ document.addEventListener("keydown", (e) => {
     return;
   if (e.key === "ArrowRight") {
     e.preventDefault();
-    step(1);
+    if (storyOf(current)) setBeat(beat + 1);
+    else step(1);
   }
   if (e.key === "ArrowLeft") {
     e.preventDefault();
-    step(-1);
+    if (storyOf(current)) setBeat(beat - 1);
+    else step(-1);
   }
 });
 load();
