@@ -159,8 +159,11 @@ function setBeat(n, story) {
     d.tabIndex = i + 1 === beat ? 0 : -1;
   });
   $("beatBack").disabled = beat === 1;
-  $("beatNext").disabled = beat === story.beats.length;
-  if (beat === story.beats.length) stopPlay();
+  const atEnd = beat === story.beats.length;
+  $("beatNext").disabled = false;
+  $("beatNext").textContent = atEnd ? "↺ Replay" : "Next beat →";
+  $("beatNext").classList.toggle("replay", atEnd);
+  if (atEnd) stopPlay();
 }
 function renderStoryArt(story) {
   const inner = $("storyArtInner");
@@ -460,7 +463,8 @@ $("read-place").onclick = () => {
 };
 $("beatNext").onclick = () => {
   stopPlay();
-  setBeat(beat + 1);
+  const story = storyOf(current);
+  setBeat(story && beat === story.beats.length ? 1 : beat + 1);
 };
 $("beatBack").onclick = () => {
   stopPlay();

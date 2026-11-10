@@ -89,17 +89,63 @@ const ratio = (fg, bg) => {
           }));
           assert.equal(second.beat, "2");
           assert.notEqual(second.cap, first.cap);
+          // label legibility floor: rendered note text >= 12px at phone width
+          if (w === 390) {
+            const notePx = await p.evaluate(() => {
+              const note = document.querySelector(".beat-layer.on .note");
+              const svg = document.querySelector("#storyArtInner svg");
+              const scale = svg.getBoundingClientRect().width / 900;
+              return parseFloat(getComputedStyle(note).fontSize) * scale;
+            });
+            assert.ok(notePx >= 12, `note size ${notePx}px ${id}`);
+          }
+          // no label/art collisions in any beat
+          for (let bIdx = 1; bIdx <= 3; bIdx++) {
+            await p.evaluate((n) => setBeat(n), bIdx);
+            const hits = await p.evaluate(() => {
+              const notes = [...document.querySelectorAll(".beat-layer.on .note")];
+              const hits = [];
+              const rects = notes.map((n) => {
+                const r = n.getBoundingClientRect();
+                return { r, t: n.textContent };
+              });
+              for (const pth of document.querySelectorAll(".beat-layer.on path")) {
+                const len = pth.getTotalLength();
+                for (let d = 0; d <= len; d += 5) {
+                  const pt = pth.getPointAtLength(d);
+                  const m = pth.getScreenCTM();
+                  const x = m.a * pt.x + m.c * pt.y + m.e;
+                  const y = m.b * pt.x + m.d * pt.y + m.f;
+                  for (const { r, t } of rects)
+                    if (x > r.left + 2 && x < r.right - 2 && y > r.top + 2 && y < r.bottom - 2)
+                      hits.push(`${t} <- path@${Math.round(x)},${Math.round(y)}`);
+                }
+              }
+              for (let i = 0; i < rects.length; i++)
+                for (let j = i + 1; j < rects.length; j++) {
+                  const a = rects[i].r, c = rects[j].r;
+                  if (a.left < c.right - 2 && a.right > c.left + 2 && a.top < c.bottom - 2 && a.bottom > c.top + 2)
+                    hits.push(`note-note ${rects[i].t}/${rects[j].t}`);
+                }
+              return [...new Set(hits)];
+            });
+            assert.deepEqual(hits, [], `${id} beat ${bIdx} overlaps`);
+          }
           // click stepping to the end
+          await p.evaluate(() => setBeat(1));
+          await p.locator("#beatNext").click();
           await p.locator("#beatNext").click();
           const last = await p.evaluate(() => ({
             beat: document.querySelector("#storyArtInner").dataset.beat,
             layers: document.querySelectorAll(".beat-layer.on").length,
+            nextLabel: document.querySelector("#beatNext").textContent,
             nextDisabled: document.querySelector("#beatNext").disabled,
             backDisabled: document.querySelector("#beatBack").disabled,
           }));
           assert.equal(last.beat, "3");
           assert.equal(last.layers, 3);
-          assert.equal(last.nextDisabled, true);
+          assert.match(last.nextLabel, /Replay/);
+          assert.equal(last.nextDisabled, false);
           assert.equal(last.backDisabled, false);
           await p.screenshot({
             path: `${out}/${id}-beat3-${w}-${scheme}.png`,

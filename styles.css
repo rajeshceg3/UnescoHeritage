@@ -13,6 +13,7 @@
   --line: #d9d8c9;
   --accent: #59472f;
   --accentInk: var(--accent);
+  --ctaInk: color-mix(in srgb, var(--accentInk) 72%, #1c1a16);
   --serif: Georgia, "Times New Roman", serif;
   --hand: "Caveat", cursive;
 }
@@ -183,12 +184,39 @@ h2:focus {
   stroke-width: 3;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+.story-art-inner svg path:not(.flow):not(.hatch) {
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
   transition:
     stroke-dashoffset 0.8s ease 0.1s,
     opacity 0.45s ease,
     fill-opacity 0.6s ease 0.15s;
+}
+.story-art-inner svg .beat-layer.on path {
+  stroke-dashoffset: 0;
+}
+.story-art-inner svg .hatch {
+  stroke: var(--ink);
+  stroke-width: 1.6;
+  opacity: 0.45;
+}
+.story-art-inner svg .flow {
+  stroke-dasharray: 7 9;
+  animation: dashflow 1.8s linear infinite;
+}
+@keyframes dashflow {
+  to {
+    stroke-dashoffset: -32;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .story-art-inner svg .flow {
+    animation: none;
+  }
+  .story-art-inner svg path {
+    transition: none !important;
+  }
 }
 .story-art-inner .beat-layer {
   opacity: 0;
@@ -197,12 +225,9 @@ h2:focus {
 .story-art-inner .beat-layer.on {
   opacity: 1;
 }
-.story-art-inner .beat-layer.on path {
-  stroke-dashoffset: 0;
-}
 .story-art-inner .note {
   font-family: var(--hand);
-  font-size: 30px;
+  font-size: 38px;
   fill: var(--accentInk);
   stroke: none;
 }
@@ -322,7 +347,7 @@ h2:focus {
 .cta-btn {
   border: 0;
   border-radius: 999px;
-  background: var(--ink);
+  background: var(--ctaInk, var(--accentInk));
   color: var(--paper);
   font-size: 13px;
   font-weight: 600;
@@ -336,6 +361,18 @@ h2:focus {
 .cta-btn:active {
   transform: translateY(2px) scale(0.98);
   box-shadow: 0 1px 0 rgba(54, 58, 48, 0.25);
+}
+.cta-btn.replay {
+  background: none;
+  color: var(--ctaInk, var(--accentInk));
+  border: 2px solid var(--ctaInk, var(--accentInk));
+  box-shadow: none;
+}
+@media (prefers-color-scheme: dark) {
+  .cta-btn,
+  .cta-btn.replay {
+    --ctaInk: var(--accentInk);
+  }
 }
 .place-action {
   display: flex;
