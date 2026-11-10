@@ -1,15 +1,247 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Heritage - A small field guide</title><link rel="stylesheet" href="styles.css"></head><body>
-<header class="masthead"><a href="./" class="brand">heritage<span>A SMALL FIELD GUIDE</span></a><button id="collection-toggle" type="button" aria-expanded="false" aria-controls="collection">The six places <span aria-hidden="true">↗</span></button></header>
-<main class="app-shell">
-<section id="collection" hidden aria-label="Choose a place"><p class="eyebrow">Take a different path</p><div id="place-list"></div><p id="favoriteCount"></p><p id="favoritesList"></p><button id="shuffleBtn" type="button">Surprise me <span aria-hidden="true">↗</span></button></section>
-<section class="hero-card" id="heroCard" aria-labelledby="siteName">
-<div class="content-layer"><div class="place-heading"><p class="eyebrow">Places worth understanding</p><span id="place-number" aria-hidden="true">01</span></div><div class="place-intro"><header class="content-head"><p id="siteLocation" class="location"></p><p id="categoryBadge" class="category-badge"></p></header><h1 id="siteName" tabindex="-1">Loading...</h1><p id="siteDescription" class="description"></p>
-</div><figure class="image-stack"><img id="siteImage" width="900" height="450" alt="Country locator map"><figcaption><span id="map-country"></span><span>COUNTRY LOCATOR · NOT SITE BOUNDARIES</span></figcaption></figure>
-<div class="place-action"><button id="read-place" type="button" aria-expanded="false" aria-controls="place-notes">Read the place <span aria-hidden="true">↓</span></button><button id="favoriteBtn" type="button">Save favorite</button></div>
-<section id="place-notes" hidden aria-label="Field notes"><div class="notes-intro"><p class="eyebrow">A closer look</p><h2 id="siteSignificance"></h2></div><section class="highlight-panel"><h3>Look for</h3><ul id="siteHighlights"></ul></section><section class="story-panel" aria-label="Ways to read this place"><div class="lens-toggle" role="tablist" aria-label="Choose a lens"><button id="lensSenseBtn" role="tab" aria-selected="true" type="button">Notice</button><button id="lensStoryBtn" role="tab" aria-selected="false" type="button">Context</button><button id="lensRitualBtn" role="tab" aria-selected="false" type="button">A question</button></div><p id="lensBody" role="tabpanel"></p><details class="reflection"><summary>Take it with you</summary><p>Prompts for looking at a photograph or thinking about the place, not a claim that you are there.</p><ol id="microMoments"></ol></details></section></section>
-<nav class="nav-strip" aria-label="Place navigation"><button id="prevBtn" type="button" aria-label="Previous destination">← Previous</button><span id="sitePosition"></span><button id="nextBtn" type="button" aria-label="Next destination">Next place ↗</button></nav>
-<p id="statusMessage" role="status" aria-live="polite"></p>
-<details class="reference"><summary>Reference &amp; map</summary><p>Independent field guide. Not affiliated with UNESCO. Short summaries are based on the official listing; reflective prompts are editorial, not historical claims or travel instructions.</p><p>Inscribed <span id="siteYear"></span> · Criteria <span id="siteCriteria"></span><span id="siteSeason" hidden></span></p><p><a id="site-source" target="_blank" rel="noopener">Read the official UNESCO listing ↗</a></p><p>The map highlights a country, not the exact property or its boundaries. It replaces unreliable stock photographs. Small countries are deliberately marked for visibility. Not a navigation map.</p><p>Made with <a href="https://www.naturalearthdata.com/about/terms-of-use/" target="_blank" rel="noopener">Natural Earth</a>, public-domain 1:110m map data. Local SVG rendering, no remote tiles.</p></details>
-</div></section>
-<footer class="page-footer"><span>Six places. Look a little longer.</span><span>Saved places stay in this browser.</span></footer></main><script src="script.js" defer></script><script src="field-guide.js" defer></script></body></html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Heritage - A small field guide</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="masthead">
+      <a href="./" class="brand">heritage<span>A SMALL FIELD GUIDE</span></a
+      ><button
+        id="collection-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="collection"
+      >
+        Browse places <span aria-hidden="true">↗</span>
+      </button>
+    </header>
+    <main class="app-shell">
+      <section id="collection" hidden aria-label="Choose a place">
+        <div class="browse-head">
+          <p class="eyebrow">Find your next place</p>
+          <button id="close-browse" type="button">Close browse ×</button>
+        </div>
+        <label class="search-label" for="place-search"
+          >Search places or countries</label
+        ><input
+          id="place-search"
+          type="search"
+          placeholder="Try Kyoto, India or a name"
+          autocomplete="off"
+        />
+        <details class="filters">
+          <summary>Narrow the list</summary>
+          <div class="filter-fields">
+            <label
+              >Country<select id="country-filter">
+                <option value="">Every country</option>
+              </select></label
+            ><label
+              >Kind of heritage<select id="category-filter">
+                <option value="">Every kind</option>
+                <option>Cultural</option>
+                <option>Natural</option>
+                <option>Mixed</option>
+              </select></label
+            ><label class="saved-filter"
+              ><input id="saved-only" type="checkbox" /> Saved places
+              only</label
+            >
+          </div>
+        </details>
+        <p id="result-count" role="status" aria-live="polite"></p>
+        <div id="place-list"></div>
+        <div class="result-pages">
+          <button id="results-prev" type="button">← Earlier results</button
+          ><span id="result-page"></span
+          ><button id="results-next" type="button">More results →</button>
+        </div>
+        <p id="favoriteCount"></p>
+        <button id="shuffleBtn" type="button">
+          Surprise me <span aria-hidden="true">↗</span>
+        </button>
+      </section>
+      <section class="hero-card" id="heroCard" aria-labelledby="siteName">
+        <div class="content-layer">
+          <div class="place-heading">
+            <p class="eyebrow">Places worth understanding</p>
+            <span id="place-number" aria-hidden="true">01</span>
+          </div>
+          <div class="place-intro">
+            <header class="content-head">
+              <p id="siteLocation" class="location"></p>
+              <p id="categoryBadge" class="category-badge"></p>
+            </header>
+            <h1 id="siteName" tabindex="-1">A world worth understanding.</h1>
+            <p id="siteDescription" class="description"></p>
+          </div>
+          <figure class="image-stack">
+            <img
+              id="siteImage"
+              width="900"
+              height="450"
+              src="assets/world.svg"
+              alt="World locator map"
+            />
+            <figcaption>
+              <span id="map-country"></span
+              ><span>REPRESENTATIVE POINT · NOT BOUNDARIES</span>
+            </figcaption>
+            <svg class="map-point" viewBox="0 0 900 450" aria-hidden="true">
+              <circle id="point-ring" r="14" />
+              <circle id="point-dot" r="4" />
+            </svg>
+          </figure>
+          <div class="place-action">
+            <button
+              id="read-place"
+              type="button"
+              aria-expanded="false"
+              aria-controls="place-notes"
+            >
+              Read the place <span aria-hidden="true">↓</span></button
+            ><button id="favoriteBtn" type="button">Save favorite</button>
+          </div>
+          <section id="place-notes" hidden aria-label="Field notes">
+            <div class="notes-intro">
+              <p class="eyebrow">A closer look</p>
+              <h2 id="siteSignificance"></h2>
+              <details id="official-description">
+                <summary>Read the full UNESCO description</summary>
+                <p id="full-description"></p>
+                <p class="source-credit">
+                  UNESCO · CC BY-SA 4.0. Dataset text, not visitor advice.
+                </p>
+              </details>
+            </div>
+            <section class="highlight-panel">
+              <h3>Look for</h3>
+              <ul id="siteHighlights"></ul>
+            </section>
+            <section class="story-panel" aria-label="Ways to read this place">
+              <div
+                class="lens-toggle"
+                role="tablist"
+                aria-label="Choose a lens"
+              >
+                <button
+                  id="lensSenseBtn"
+                  role="tab"
+                  aria-selected="true"
+                  type="button"
+                >
+                  Notice</button
+                ><button
+                  id="lensStoryBtn"
+                  role="tab"
+                  aria-selected="false"
+                  type="button"
+                >
+                  Context</button
+                ><button
+                  id="lensRitualBtn"
+                  role="tab"
+                  aria-selected="false"
+                  type="button"
+                >
+                  A question
+                </button>
+              </div>
+              <p id="lensBody" role="tabpanel"></p>
+              <details class="reflection">
+                <summary>Take it with you</summary>
+                <p>
+                  Prompts for looking at a photograph or thinking about the
+                  place, not a claim that you are there.
+                </p>
+                <ol id="microMoments"></ol>
+              </details>
+            </section>
+          </section>
+          <nav class="nav-strip" aria-label="Place navigation">
+            <button
+              id="prevBtn"
+              type="button"
+              aria-label="Previous destination"
+            >
+              ← Previous</button
+            ><span id="sitePosition"></span
+            ><button id="nextBtn" type="button" aria-label="Next destination">
+              Next place ↗
+            </button>
+          </nav>
+          <p id="statusMessage" role="status" aria-live="polite">
+            Opening the catalog…
+          </p>
+          <button id="retry-catalog" type="button" hidden>
+            Try loading again
+          </button>
+          <details class="reference">
+            <summary>Reference &amp; map</summary>
+            <p>
+              Independent field guide. Not affiliated with UNESCO. UNESCO
+              descriptions come from its official DataHub. Intro text is an
+              excerpt; looking prompts are editorial, not historical claims or
+              travel instructions.
+            </p>
+            <p>
+              Inscribed <span id="siteYear"></span> · Criteria
+              <span id="siteCriteria"></span
+              ><span id="siteSeason" hidden></span>
+            </p>
+            <p>
+              <a id="site-source" target="_blank" rel="noopener"
+                >Read the official UNESCO listing ↗</a
+              >
+            </p>
+            <p>
+              The dot is the representative coordinate in the UNESCO dataset,
+              not a surveyed boundary or entrance. Serial and transboundary
+              properties can span many locations; a single point does not show
+              their extent. Two properties have no representative point in this
+              snapshot. Not a navigation map.
+            </p>
+            <p>
+              Catalog:
+              <a
+                href="https://data.unesco.org/explore/assets/whc001/"
+                target="_blank"
+                rel="noopener"
+                >UNESCO World Heritage List</a
+              >, updated 8 November 2026, retrieved 10 November 2026. All 1,273
+              properties in that snapshot. Text and adapted catalog data:
+              <a
+                href="https://creativecommons.org/licenses/by-sa/4.0/"
+                target="_blank"
+                rel="noopener"
+                >CC BY-SA 4.0</a
+              >. Changes: selected fields, normalized format, shortened intro
+              excerpts.
+              <a href="data/catalog.json">Download the adapted data</a>. No
+              UNESCO endorsement.
+            </p>
+            <p>
+              Made with
+              <a
+                href="https://www.naturalearthdata.com/about/terms-of-use/"
+                target="_blank"
+                rel="noopener"
+                >Natural Earth</a
+              >, public-domain 1:110m map data. Local SVG rendering, no remote
+              tiles.
+            </p>
+          </details>
+        </div>
+      </section>
+      <footer class="page-footer">
+        <span>1,273 places. One at a time.</span
+        ><span>Saved places stay in this browser.</span>
+      </footer>
+    </main>
+    <script src="curated.js" defer></script>
+    <script src="script.js" defer></script>
+  </body>
+</html>
