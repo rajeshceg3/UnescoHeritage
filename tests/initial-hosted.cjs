@@ -1,0 +1,66 @@
+const { chromium } = require("playwright"),
+  fs = require("fs"),
+  assert = require("assert/strict");
+(async () => {
+  let b = await chromium.launch({
+    ...(process.env.CHROME_PATH ? {executablePath: process.env.CHROME_PATH} : {}),
+    args: ["--no-sandbox"],
+  });
+  let results = [];
+  fs.mkdirSync("/downloads/heritage-action-audit", { recursive: true });
+  try {
+    for (const [w, h] of [
+      [320, 844],
+      [390, 844],
+      [844, 390],
+      [1320, 844],
+    ]) {
+      let p = await b.newPage({
+          viewport: { width: w, height: h },
+          reducedMotion: "reduce",
+        }),
+        errors = [];
+      p.on("pageerror", (e) => errors.push(e.message));
+      await p.goto("https://unesco-heritage-zeta.vercel.app/", {
+        waitUntil: "domcontentloaded",
+        timeout: 25000,
+      });
+      await p.locator("#nextBtn").waitFor();
+      await p.locator("#nextBtn").scrollIntoViewIfNeeded();
+      const a = await p.locator("#nextBtn").evaluate((e) => {
+        let r = e.getBoundingClientRect();
+        return {
+          text: e.textContent,
+          rect: r.toJSON(),
+          hit: e.contains(
+            document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2),
+          ),
+          color: getComputedStyle(e).backgroundColor,
+          overflow: document.documentElement.scrollWidth > innerWidth,
+        };
+      });
+      await p.screenshot({
+        path: `/downloads/heritage-action-audit/${w}-before.png`,
+      });
+      await p.locator("#nextBtn").click();
+      await p.waitForFunction(
+        () => !document.querySelector("#shuffleBtn").disabled,
+      );
+      await p.locator("#nextBtn").scrollIntoViewIfNeeded();
+      await p.screenshot({
+        path: `/downloads/heritage-action-audit/${w}-after.png`,
+      });
+      results.push({ width: w, next: a, errors });
+      console.log(w, a);
+    }
+  } finally {
+    await b.close();
+    fs.writeFileSync(
+      "/downloads/heritage-action-audit/results.json",
+      JSON.stringify(results, null, 2),
+    );
+  }
+})().catch((e) => {
+  console.error(e);
+  process.exitCode = 1;
+});

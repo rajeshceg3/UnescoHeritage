@@ -17,19 +17,6 @@
     <div class="grain" aria-hidden="true"></div>
 
     <main class="app-shell">
-      <section class="delight-compass" aria-labelledby="delightHeading">
-        <p class="compass-kicker">Experience North Star</p>
-        <h2 id="delightHeading">
-          “Could someone close this page and still remember the sounds, textures, rituals, and emotions of being there?”
-        </h2>
-        <ul class="compass-list">
-          <li>Arrival before information: open with mood, setting, and sensory cues before presenting facts.</li>
-          <li>Living culture over static data: foreground rituals, people, sounds, and daily rhythms of the place.</li>
-          <li>Embodied storytelling: write every line so visitors can picture themselves walking, listening, and discovering.</li>
-          <li>Meaningful memory: make each interaction feel like collecting moments, not collecting metadata.</li>
-        </ul>
-      </section>
-
       <section class="hero-card" id="heroCard">
         <div class="image-stack">
           <img id="siteImage" class="site-image" alt="UNESCO site" />
@@ -44,7 +31,7 @@
             <p id="categoryBadge" class="category-badge">Cultural</p>
           </header>
 
-          <h1 id="siteName">Loading…</h1>
+          <h1 id="siteName" tabindex="-1">Loading…</h1>
           <p id="siteLocation" class="location"></p>
           <p id="siteDescription" class="description"></p>
 
@@ -97,12 +84,12 @@
             <div class="nav-indicator" aria-hidden="true">
               <span id="sitePosition">1 / 1</span>
             </div>
-            <button id="nextBtn" class="nav-btn" type="button" aria-label="Next destination">Next →</button>
+            <button id="nextBtn" class="nav-btn" type="button" aria-label="Next destination">Next destination →</button>
           </nav>
 
           <div class="actions">
             <button id="shuffleBtn" class="shuffle-btn" type="button">
-              <span>Discover another sanctuary</span>
+              <span>Surprise me</span>
               <span class="arrow">→</span>
             </button>
             <button id="favoriteBtn" class="ghost-btn" type="button">Save favorite</button>
@@ -115,6 +102,19 @@
           </section>
         </div>
       </section>
+      <details class="delight-compass"><summary>About this experience</summary>
+        <p class="compass-kicker">Experience North Star</p>
+        <h2 id="delightHeading">
+          “Could someone close this page and still remember the sounds, textures, rituals, and emotions of being there?”
+        </h2>
+        <ul class="compass-list">
+          <li>Arrival before information: open with mood, setting, and sensory cues before presenting facts.</li>
+          <li>Living culture over static data: foreground rituals, people, sounds, and daily rhythms of the place.</li>
+          <li>Embodied storytelling: write every line so visitors can picture themselves walking, listening, and discovering.</li>
+          <li>Meaningful memory: make each interaction feel like collecting moments, not collecting metadata.</li>
+        </ul>
+      </details>
+
     </main>
 
     <script src="script.js"></script>

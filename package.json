@@ -1,0 +1,1 @@
+{"name":"unesco-heritage-navigation","private":true,"scripts":{"test":"node --check script.js && node tests/navigation.cjs"},"devDependencies":{"playwright":"1.56.1"}}

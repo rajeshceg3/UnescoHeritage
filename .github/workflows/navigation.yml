@@ -1,0 +1,25 @@
+name: Navigation journeys
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  navigation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Check all viewports and both motion settings
+        run: |
+          python3 -m http.server 8774 > /tmp/server.log 2>&1 &
+          CHROME_PATH=/usr/bin/google-chrome npm test
+          CHROME_PATH=/usr/bin/google-chrome MOTION=no-preference OUT=docs/navigation/motion npm test
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: navigation-evidence
+          path: docs/navigation/

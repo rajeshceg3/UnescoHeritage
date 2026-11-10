@@ -157,6 +157,9 @@ const favoriteIndexes = new Set(JSON.parse(localStorage.getItem(FAVORITES_KEY) ?
 let touchStartX = 0;
 let touchDeltaX = 0;
 let activeLens = 'sense';
+let navigating=false;
+let firstRender=true;
+const reducedMotion=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function randomIndex(exclude) {
   if (heritageSites.length < 2) {
@@ -235,6 +238,11 @@ function pulseLayer() {
 }
 
 function renderSite(index, direction = 'next') {
+  if(navigating)return;
+  navigating=true;
+  const initial=firstRender;firstRender=false;
+  refs.card.setAttribute('aria-busy','true');
+  [refs.prevButton,refs.nextButton,refs.favoriteButton].forEach(b=>b.disabled=true);
   const site = heritageSites[index];
   refs.card.classList.add('loading');
   refs.button.disabled = true;
@@ -264,10 +272,14 @@ function renderSite(index, direction = 'next') {
     updatePosition(index);
     pulseLayer();
     refs.card.classList.remove('loading');
+    navigating=false;
+    refs.card.removeAttribute('aria-busy');
+    [refs.prevButton,refs.nextButton,refs.favoriteButton].forEach(b=>b.disabled=false);
+    if(!initial){refs.name.focus({preventScroll:true});refs.name.scrollIntoView({block:'start',behavior:'instant'});}
     refs.button.disabled = false;
     refs.button.removeAttribute('aria-busy');
     setStatus(`Now exploring ${site.name}. Swipe or use ←/→ to navigate, Enter for surprise, F to toggle favorite.`);
-  }, 170);
+  }, reducedMotion()?0:170);
 
   currentIndex = index;
   const nextIndex = randomIndex(index);
@@ -277,7 +289,7 @@ function renderSite(index, direction = 'next') {
 refs.button.addEventListener('click', () => {
   renderSite(randomIndex(currentIndex), 'next');
 
-  refs.button.animate(
+  if(!reducedMotion())refs.button.animate(
     [
       { transform: 'scale(1)' },
       { transform: 'scale(0.97)' },
@@ -335,6 +347,8 @@ Object.entries(refs.lensButtons).forEach(([lens, button]) => {
 });
 
 document.addEventListener('keydown', (event) => {
+  if(event.defaultPrevented||event.repeat||event.ctrlKey||event.altKey||event.metaKey||event.shiftKey)return;
+  if(event.target.closest('button,a,input,select,textarea,summary,[contenteditable=true]'))return;
   if (event.key === 'ArrowLeft') {
     event.preventDefault();
     stepSite(-1);
