@@ -1,0 +1,38 @@
+[
+  {
+    "width": 320,
+    "height": 844,
+    "transitions": 6,
+    "keyboard": true,
+    "lenses": 3,
+    "favoritesPersistence": true,
+    "errors": []
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "transitions": 6,
+    "keyboard": true,
+    "lenses": 3,
+    "favoritesPersistence": true,
+    "errors": []
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "transitions": 6,
+    "keyboard": true,
+    "lenses": 3,
+    "favoritesPersistence": true,
+    "errors": []
+  },
+  {
+    "width": 1320,
+    "height": 844,
+    "transitions": 6,
+    "keyboard": true,
+    "lenses": 3,
+    "favoritesPersistence": true,
+    "errors": []
+  }
+]

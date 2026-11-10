@@ -1,0 +1,52 @@
+[
+  {
+    "file": "index.html",
+    "url": "https://unesco-heritage-zeta.vercel.app/index.html",
+    "sha256": "2dd93ae7c5a463d8e88b0eb452307e892ec7b0ea63c5efe6121204d87f6a748a"
+  },
+  {
+    "file": "styles.css",
+    "url": "https://unesco-heritage-zeta.vercel.app/styles.css",
+    "sha256": "74da5ba55ece708a14ce98ff4eeb2056e9cfb3be546ac9d1344d6827b66c748e"
+  },
+  {
+    "file": "script.js",
+    "url": "https://unesco-heritage-zeta.vercel.app/script.js",
+    "sha256": "16e440ce54e0bd87e3ab1e71cf03ef5cc6a7e65f5608175cf3cee462cf9d5a0d"
+  },
+  {
+    "file": "field-guide.js",
+    "url": "https://unesco-heritage-zeta.vercel.app/field-guide.js",
+    "sha256": "23a5dc37a083101e8d313a7df9836a126cb20479ddf10140ef94b7677557cad2"
+  },
+  {
+    "file": "assets/locator-0.svg",
+    "url": "https://unesco-heritage-zeta.vercel.app/assets/locator-0.svg",
+    "sha256": "e8c81f94bcaef24baad5e8f6cf9cf8460b8285bda1697ca47674126180a3d982"
+  },
+  {
+    "file": "assets/locator-1.svg",
+    "url": "https://unesco-heritage-zeta.vercel.app/assets/locator-1.svg",
+    "sha256": "7331c62d689b5b10407f36a2cbc662a670161979a56dc28945ec249b0d02997b"
+  },
+  {
+    "file": "assets/locator-2.svg",
+    "url": "https://unesco-heritage-zeta.vercel.app/assets/locator-2.svg",
+    "sha256": "6dcb2945fb0421a8d4908981f25fa7e501d633238aa9af4601f704337e97c7f6"
+  },
+  {
+    "file": "assets/locator-3.svg",
+    "url": "https://unesco-heritage-zeta.vercel.app/assets/locator-3.svg",
+    "sha256": "944d49d39bf54892191ed93d21a7e05aa9754f71c5219df3814fe40157209e8d"
+  },
+  {
+    "file": "assets/locator-4.svg",
+    "url": "https://unesco-heritage-zeta.vercel.app/assets/locator-4.svg",
+    "sha256": "038331e48cebe3a43f996cf46d421bf20bb1063fc0069b3d4d8dc27f6404cc05"
+  },
+  {
+    "file": "assets/locator-5.svg",
+    "url": "https://unesco-heritage-zeta.vercel.app/assets/locator-5.svg",
+    "sha256": "c9df7ee57266fd85d279297f5763513858b71db5a3ef8282efd9b150bea6e79f"
+  }
+]

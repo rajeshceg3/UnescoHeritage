@@ -26,3 +26,14 @@ Geometry is retained in natural-earth-source.geojson; python3 tests/build-locato
 ## Verification
 
 Navigation journeys:320,390,844landscape,1320; reduced and normal motion, sequential wrap, keyboard Enter/Space,3lenses, favorite save/reload, reachable44px action and zero page errors/overflow. Extended field-guide journeys check all6maps, all6official hrefs, chooser/focus, notes collapse on place change, tab arrows/Home/End, reflection/reference disclosure, and exact legacy synthetic saved-byte preservation through reading/reload. Tests use synthetic fixtures only. Actual pixels are retained under local. Before screenshots retain the prior hosted interface, not mockups.
+
+## Production qualification
+
+Live: https://unesco-heritage-zeta.vercel.app/
+PR8: https://github.com/rajeshceg3/UnescoHeritage/pull/8
+PR9: https://github.com/rajeshceg3/UnescoHeritage/pull/9
+Final runtime: d39e04f67eb0e845373d7a1e49de6cfd6ae6b62c. Exact final Vercel status successful; all10served runtime files match source bytes. Public hosted four-width normal/reduced-motion navigation and extended six-place/source/map/disclosure/byte-preservation checks pass. Actual final no-fixture phone, landscape and desktop pixels inspected, plus the open chooser and notes.
+
+A hosted normal-motion hit-test failure was investigated before release closeout. Three repeat journeys passed, but a deliberate slow initial image reproduced a real2px-to197px map height shift. PR9 adds intrinsic900x450image dimensions, reserving197px on a390px phone before decoding. The exact final hosted slow-map reproduction passes with unchanged before/after height; a failed map leaves notes usable and the next map recovers. Both are in main CI.
+
+Before images are retained from the prior hosted navigation audit. They are viewport/action screenshots, not matching first-arrival compositions. A fresh local baseline capture was attempted but its external resources stalled navigation; no fabricated before image is supplied. Final-*.png are actual final hosted screenshots without synthetic saved-place fixtures. Other regression images use clearly synthetic test data.

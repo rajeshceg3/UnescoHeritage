@@ -1,0 +1,5 @@
+{
+  before: { x: 0, y: 386.375, width: 390, height: 197 },
+  after: { x: 0, y: 386.375, width: 390, height: 197 }
+}
+slow map arrival does not shift actions
