@@ -62,15 +62,17 @@ const STORIES = {
     ],
     svg: `
 <g class="beat-layer beat-1">
+  <g transform="translate(275 410) scale(2) translate(-275 -410)">
   <path pathLength="1" d="M150,470 H400"/>
   <path pathLength="1" d="M170,470 V440 H380 V470"/>
   <path pathLength="1" d="M205,440 C205,410 215,400 225,370 C235,400 245,410 245,440"/>
   <path pathLength="1" d="M255,440 C255,395 268,380 275,330 C282,380 295,395 295,440"/>
   <path pathLength="1" d="M305,440 C305,410 315,400 325,370 C335,400 345,410 345,440"/>
   <path pathLength="1" d="M262,470 v-14 h26 v14"/>
-  <text class="note" x="240" y="310" transform="rotate(-2 240 310)">Angkor Wat</text>
+  </g>
+  <text class="note" x="220" y="225" transform="rotate(-2 220 225)">Angkor Wat</text>
 </g>
-<g class="beat-layer beat-2">
+<g class="beat-layer beat-2" transform="translate(560 455) scale(1.2) translate(-560 -455)">
   <path pathLength="1" d="M480,470 H840" class="ground"/>
   <path pathLength="1" d="M560,470 C560,440 575,428 590,404 C605,428 620,440 620,470"/>
   <path pathLength="1" d="M700,470 C700,446 712,436 724,418 C736,436 748,446 748,470"/>
@@ -107,7 +109,7 @@ const STORIES = {
       { caption: "The park is the route: a loop that follows rain." },
     ],
     svg: `
-<g class="beat-layer beat-1">
+<g class="beat-layer beat-1" transform="translate(450 390) scale(1.1) translate(-450 -390)">
   <path pathLength="1" d="M50,400 C300,378 600,388 850,382"/>
   <path pathLength="1" d="M700,400 v-64 M700,336 C660,320 640,328 620,336 M700,336 C740,318 762,328 780,338"/>
   <path pathLength="1" d="M420,392 q90,-18 190,-4"/>
@@ -153,7 +155,7 @@ const STORIES = {
       { caption: "Earthquake and shells damaged it; repair became part of the city." },
     ],
     svg: `
-<g class="beat-layer beat-1">
+<g class="beat-layer beat-1" transform="translate(450 390) scale(1.1) translate(-450 -390)">
   <path class="waterline flow" d="M60,480 q30,-10 60,0 q30,10 60,0 q30,-10 60,0 q30,10 60,0 q30,-10 60,0 q30,10 60,0 q30,-10 60,0 q30,10 60,0 q30,-10 60,0 q30,10 60,0 q30,-10 60,0"/>
   <path pathLength="1" class="waterline" d="M110,525 q30,-10 60,0 q30,10 60,0 q30,-10 60,0 q30,10 60,0 q30,-10 60,0 q30,10 60,0 q30,-10 60,0 q30,10 60,0 q30,-10 60,0"/>
   <path pathLength="1" d="M150,440 H840"/>

@@ -181,7 +181,7 @@ h2:focus {
 .story-art-inner svg circle {
   fill: none;
   stroke: var(--ink);
-  stroke-width: 3;
+  stroke-width: 3.6;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
@@ -232,7 +232,9 @@ h2:focus {
   font-family: var(--hand);
   font-size: 38px;
   fill: var(--ctaInk, var(--accentInk));
-  stroke: none;
+  stroke: var(--ctaInk, var(--accentInk));
+  stroke-width: 1.4;
+  paint-order: stroke fill;
 }
 .story-art-inner .water {
   fill: var(--accentInk);

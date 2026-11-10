@@ -153,6 +153,36 @@ const ratio = (fg, bg) => {
               art.coverage >= 0.004,
               `sparse art ${id} beat ${bIdx}: ${art.coverage.toFixed(4)}`,
             );
+            // main subject fills the stage: union bbox of drawn paths
+            const bb = await p.evaluate(() => {
+              const svg = document.querySelector("#storyArtInner svg");
+              const sr = svg.getBoundingClientRect();
+              const sc = sr.width / 900;
+              let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
+              for (const pth of document.querySelectorAll(".beat-layer.on path")) {
+                const r = pth.getBoundingClientRect();
+                x0 = Math.min(x0, (r.left - sr.left) / sc);
+                y0 = Math.min(y0, (r.top - sr.top) / sc);
+                x1 = Math.max(x1, (r.right - sr.left) / sc);
+                y1 = Math.max(y1, (r.bottom - sr.top) / sc);
+              }
+              return { w: (x1 - x0) / 900, h: (y1 - y0) / 600 };
+            });
+            assert.ok(bb.w >= 0.45, `stage width ${id} beat ${bIdx}: ${bb.w.toFixed(2)}`);
+            assert.ok(bb.h >= 0.45, `stage height ${id} beat ${bIdx}: ${bb.h.toFixed(2)}`);
+            // every visible text node keeps readable contrast
+            if (w === 390) {
+              const noteRatios = await p.evaluate(() => {
+                const rgb = (el, prop) =>
+                  getComputedStyle(el)[prop].match(/\d+/g).map(Number);
+                const bg = rgb(document.body, "backgroundColor");
+                return [...document.querySelectorAll(".beat-layer.on .note")].map((n) => [
+                  n.textContent, rgb(n, "fill"), bg,
+                ]);
+              });
+              for (const [t, fg, bg] of noteRatios)
+                assert.ok(ratio(fg, bg) >= 4.5, `note contrast ${id} beat ${bIdx} "${t}"`);
+            }
           }
           // click stepping to the end
           await p.evaluate(() => setBeat(1));
