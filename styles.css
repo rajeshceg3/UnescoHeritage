@@ -211,6 +211,9 @@ h2:focus {
   }
 }
 @media (prefers-reduced-motion: reduce) {
+  .story-art-inner .beat-layer {
+    transition: none !important;
+  }
   .story-art-inner svg .flow {
     animation: none;
   }
@@ -228,7 +231,7 @@ h2:focus {
 .story-art-inner .note {
   font-family: var(--hand);
   font-size: 38px;
-  fill: var(--accentInk);
+  fill: var(--ctaInk, var(--accentInk));
   stroke: none;
 }
 .story-art-inner .water {
@@ -370,7 +373,8 @@ h2:focus {
 }
 @media (prefers-color-scheme: dark) {
   .cta-btn,
-  .cta-btn.replay {
+  .cta-btn.replay,
+  .story-art-inner .note {
     --ctaInk: var(--accentInk);
   }
 }

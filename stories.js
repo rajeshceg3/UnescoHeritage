@@ -19,7 +19,11 @@ const STORIES = {
     svg: `
 <g class="beat-layer beat-1">
   <path pathLength="1" d="M60,470 C170,320 260,300 330,336 C395,215 435,180 470,246 C520,332 600,326 665,352 C745,382 820,424 858,470"/>
-  <path pathLength="1" d="M140,200 q12,-10 24,0 M176,188 q12,-10 24,0"/>
+  <path pathLength="1" d="M150,470 C230,380 290,368 340,392"/>
+  <path pathLength="1" d="M560,392 C640,368 740,400 810,452"/>
+  <circle pathLength="1" cx="700" cy="236" r="30"/>
+  <path pathLength="1" d="M700,194 v-20 M670,206 l-14,-14 M730,206 l14,-14 M662,236 h-20 M738,236 h20"/>
+  <path pathLength="1" d="M140,200 q12,-10 24,0 M176,188 q12,-10 24,0 M240,226 q12,-10 24,0 M282,240 q10,-8 20,0"/>
   <text class="note" x="85" y="292" transform="rotate(-2 85 292)">the ridge</text>
 </g>
 <g class="beat-layer beat-2">
@@ -39,6 +43,7 @@ const STORIES = {
   <path pathLength="1" d="M484,420 L484,394 L500,382 L516,394 L516,420"/>
   <path pathLength="1" d="M404,404 h16 M450,404 h16 M494,404 h12"/>
   <path pathLength="1" d="M560,470 q16,-30 32,0 q16,-30 32,0 q16,-30 32,0 q16,-30 32,0 q16,-30 32,0 q16,-30 32,0 q16,-30 32,0 q16,-30 32,0"/>
+  <path pathLength="1" d="M580,440 q12,-22 24,0 q12,-22 24,0 q12,-22 24,0 q12,-22 24,0 q12,-22 24,0 q12,-22 24,0 q12,-22 24,0 q12,-22 24,0"/>
   <text class="note" x="600" y="520" transform="rotate(-2 600 520)">cloud forest</text>
   <text class="note" x="394" y="346" transform="rotate(-2 394 346)">stone city</text>
 </g>`,
@@ -82,6 +87,9 @@ const STORIES = {
   <path pathLength="1" class="waterline" d="M540,246 q24,-8 48,0 q24,8 48,0 q24,-8 48,0"/>
   <path class="channel flow" d="M470,250 C400,300 380,360 400,398"/>
   <path class="channel flow" d="M620,300 C610,340 600,370 592,404"/>
+  <path class="channel flow" d="M600,300 C585,340 570,370 556,398"/>
+  <path class="waterline" d="M560,212 q20,-7 40,0 q20,7 40,0"/>
+  <path class="waterline" d="M180,440 q18,-6 36,0 q18,6 36,0"/>
   <text class="note" x="540" y="132" transform="rotate(-2 540 132)">West Baray</text>
   <text class="note" x="470" y="374" transform="rotate(1 470 374)">canals</text>
 </g>`,
@@ -102,7 +110,10 @@ const STORIES = {
 <g class="beat-layer beat-1">
   <path pathLength="1" d="M50,400 C300,378 600,388 850,382"/>
   <path pathLength="1" d="M700,400 v-64 M700,336 C660,320 640,328 620,336 M700,336 C740,318 762,328 780,338"/>
-  <path pathLength="1" d="M150,430 v-18 M170,432 v-14 M350,440 v-16 M520,436 v-18 M820,424 v-14"/>
+  <path pathLength="1" d="M420,392 q90,-18 190,-4"/>
+  <path pathLength="1" d="M240,400 v-40 M240,360 C215,350 200,356 190,362 M240,360 C262,350 278,356 290,362"/>
+  <path pathLength="1" d="M150,430 v-18 M170,432 v-14 M250,436 v-14 M350,440 v-16 M450,438 v-15 M520,436 v-18 M600,434 v-13 M700,440 v-15 M820,424 v-14"/>
+  <path pathLength="1" d="M330,180 q11,-9 22,0 M368,192 q10,-8 20,0"/>
 </g>
 <g class="beat-layer beat-2">
   <path pathLength="1" d="M200,400 q18,-18 36,0 M206,400 v14 M214,400 v14 M222,400 v14 M230,400 v14 M236,392 q10,-8 8,-16"/>
@@ -111,11 +122,17 @@ const STORIES = {
   <path pathLength="1" d="M450,398 q19,-18 38,0 M457,398 v14 M466,398 v14 M475,398 v14 M484,398 v14 M488,390 q10,-8 8,-16"/>
   <path pathLength="1" d="M540,404 q16,-15 32,0 M546,404 v12 M554,404 v12 M562,404 v12 M570,404 v12"/>
   <path pathLength="1" d="M610,400 q18,-17 36,0 M617,400 v13 M626,400 v13 M635,400 v13 M644,400 v13 M646,392 q10,-8 8,-15"/>
+  <path pathLength="1" d="M250,368 q13,-13 26,0 M255,368 v10 M262,368 v10 M269,368 v10"/>
+  <path pathLength="1" d="M430,364 q12,-12 24,0 M435,364 v10 M442,364 v10 M449,364 v10"/>
+  <path pathLength="1" d="M560,368 q12,-12 24,0 M565,368 v10 M572,368 v10 M579,368 v10"/>
   <text class="note" x="250" y="302" transform="rotate(-1 250 302)">the herds</text>
 </g>
 <g class="beat-layer beat-3">
   <path class="route flow" d="M240,430 C220,300 640,280 660,390 C672,462 380,510 240,430"/>
   <path class="route" d="M660,390 l26,6 l-20,18"/>
+  <path class="route" d="M300,424 C290,330 590,314 604,384 C612,442 400,478 300,424"/>
+  <path pathLength="1" d="M400,486 v-10 M450,492 v-10 M500,492 v-10"/>
+  <path class="rain flow" d="M630,172 l-6,20 M658,174 l-6,20"/>
   <path class="hatch" d="M104,420 l28,-7 M144,422 l28,-7 M758,412 l28,-7 M798,410 l28,-7"/>
   <path pathLength="1" class="cloud" d="M600,150 q-6,-26 22,-26 q6,-20 30,-14 q22,-8 30,12 q24,0 20,22 q-2,16 -26,14 h-56 q-20,-2 -20,-8"/>
   <path class="rain flow" d="M616,168 l-6,22 M644,170 l-6,24 M672,168 l-6,22"/>

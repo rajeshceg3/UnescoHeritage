@@ -130,6 +130,29 @@ const ratio = (fg, bg) => {
               return [...new Set(hits)];
             });
             assert.deepEqual(hits, [], `${id} beat ${bIdx} overlaps`);
+            // art actually drawn + minimum ink coverage per beat
+            const animated = (process.env.MOTION || "reduce") !== "reduce";
+            const art = await p.evaluate(() => {
+              const svg = document.querySelector("#storyArtInner svg");
+              const area =
+                (svg.viewBox.baseVal.width || 900) *
+                (svg.viewBox.baseVal.height || 600);
+              let ink = 0, undrawn = 0;
+              for (const pth of document.querySelectorAll(".beat-layer.on path")) {
+                const cs = getComputedStyle(pth);
+                const w = parseFloat(cs.strokeWidth) || 3;
+                ink += pth.getTotalLength() * w;
+                const off = parseFloat(cs.strokeDashoffset) || 0;
+                if (off > 0.01) undrawn++;
+              }
+              return { coverage: ink / area, undrawn };
+            });
+            if (!animated)
+              assert.equal(art.undrawn, 0, `draw-in incomplete ${id} beat ${bIdx}`);
+            assert.ok(
+              art.coverage >= 0.004,
+              `sparse art ${id} beat ${bIdx}: ${art.coverage.toFixed(4)}`,
+            );
           }
           // click stepping to the end
           await p.evaluate(() => setBeat(1));
@@ -182,6 +205,11 @@ const ratio = (fg, bg) => {
               ratio(contrast.ctaColor, contrast.ctaBg) >= 4.5,
               `cta contrast ${id} ${scheme}`,
             );
+            if (contrast.noteColor)
+              assert.ok(
+                ratio(contrast.noteColor, bodyBg) >= 4.5,
+                `note contrast ${id} ${scheme}`,
+              );
           }
           // word list exists for curated places
           const words = await p.evaluate(
