@@ -17,7 +17,7 @@ jobs:
         run: |
           python3 -m http.server 8774 > /tmp/server.log 2>&1 &
           CHROME_PATH=/usr/bin/google-chrome npm test
-          CHROME_PATH=/usr/bin/google-chrome MOTION=no-preference OUT=docs/navigation/motion npm test
+          CHROME_PATH=/usr/bin/google-chrome MOTION=no-preference OUT=docs/full-catalog/motion npm test
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -25,3 +25,4 @@ jobs:
           path: |
             docs/navigation/
             docs/field-guide/
+            docs/full-catalog/

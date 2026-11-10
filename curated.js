@@ -1,0 +1,182 @@
+const curatedSites = [
+  {
+    name: "Machu Picchu",
+    location: "Peru",
+    year: "1983",
+    category: "Mixed",
+    significance: "An Inca city shaped around its mountain",
+    criteria: ["i", "iii", "vii", "ix"],
+    description:
+      "Stone terraces follow a ridge between the Andes and the Amazon Basin. The city and its mountain forest are protected together.",
+    highlights: [
+      "Stone terraces and water channels",
+      "An Inca settlement on a steep ridge",
+      "Mountain forest and varied habitats",
+    ],
+    lenses: {
+      sense:
+        "Notice how the terraces follow the slope rather than flattening it. The city works with its mountain.",
+      story:
+        "Built in the fifteenth century, the settlement brings together ceremonial, agricultural and residential spaces. Its precise role is still debated.",
+      ritual:
+        "In a photograph, trace one terrace from end to end. How does it make a steep slope usable?",
+    },
+    moments: [
+      "Look for the meeting of built stone and natural rock.",
+      "Ask what a water channel makes possible.",
+    ],
+    source: "https://whc.unesco.org/en/list/274/",
+    image: "assets/locator-0.svg",
+    season: "Not travel advice",
+  },
+  {
+    name: "Angkor",
+    location: "Cambodia",
+    year: "1992",
+    category: "Cultural",
+    significance: "A city built around temples and water",
+    criteria: ["i", "ii", "iii", "iv"],
+    description:
+      "Temples, reservoirs and canals survive across a vast archaeological landscape. Angkor was a centre of the Khmer Empire, not a single temple.",
+    highlights: [
+      "Angkor Wat and the Bayon",
+      "Reservoirs, canals and communication routes",
+      "Khmer architecture across several centuries",
+    ],
+    lenses: {
+      sense:
+        "Look beyond the towers. Water and the space between buildings are part of this place too.",
+      story:
+        "The archaeological park holds remains of Khmer capitals from the ninth to the fifteenth century. Its architecture and water system reveal a large, connected city.",
+      ritual:
+        "Compare a temple plan with a reservoir. What does each tell you about the people who built the city?",
+    },
+    moments: [
+      "Separate the idea of Angkor from the single temple Angkor Wat.",
+      "Look for a connection between a building and water.",
+    ],
+    source: "https://whc.unesco.org/en/list/668/",
+    image: "assets/locator-1.svg",
+    season: "Not travel advice",
+  },
+  {
+    name: "Serengeti National Park",
+    location: "Tanzania",
+    year: "1981",
+    category: "Natural",
+    significance: "A landscape kept alive by movement",
+    criteria: ["vii", "x"],
+    description:
+      "The plains support a vast annual migration of wildebeest, zebra and gazelle. The movement of animals is central to the park's value.",
+    highlights: [
+      "The annual movement of large herds",
+      "Grassland and woodland habitats",
+      "Predators and their prey",
+    ],
+    lenses: {
+      sense:
+        "Think of the landscape as a route, not a still view. The herds need room to move.",
+      story:
+        "The migration links feeding grounds across the wider ecosystem. Protecting one beautiful patch alone would not protect that movement.",
+      ritual:
+        "On a map, ask where a moving herd could go next. What happens if that route is cut off?",
+    },
+    moments: [
+      "Look for the link between rainfall, grass and movement.",
+      "Consider why a park boundary cannot explain a whole ecosystem.",
+    ],
+    source: "https://whc.unesco.org/en/list/156/",
+    image: "assets/locator-2.svg",
+    season: "Not travel advice",
+  },
+  {
+    name: "Old City of Dubrovnik",
+    location: "Croatia",
+    year: "1979",
+    category: "Cultural",
+    significance: "A city with a long memory",
+    criteria: ["i", "iii", "iv"],
+    description:
+      "Gothic, Renaissance and Baroque buildings share a small city on the Adriatic. Earthquake and conflict have made restoration part of its history.",
+    highlights: [
+      "Churches, monasteries and palaces",
+      "Gothic, Renaissance and Baroque architecture",
+      "Repair after the 1667 earthquake and later conflict",
+    ],
+    lenses: {
+      sense:
+        "Look for buildings from different periods standing next to one another. A city is built in layers.",
+      story:
+        "Dubrovnik became an important Mediterranean sea power from the thirteenth century. Its buildings survived an earthquake and later damage, with restoration continuing that history.",
+      ritual:
+        "Choose two neighbouring buildings in a photograph. What clues suggest they come from different times?",
+    },
+    moments: [
+      "Notice the relationship between the old city and the sea.",
+      "Ask which details might have been repaired.",
+    ],
+    source: "https://whc.unesco.org/en/list/95/",
+    image: "assets/locator-3.svg",
+    season: "Not travel advice",
+  },
+  {
+    name: "Great Barrier Reef",
+    location: "Australia",
+    year: "1981",
+    category: "Natural",
+    significance: "Living structures on an enormous scale",
+    criteria: ["vii", "viii", "ix", "x"],
+    description:
+      "Off Queensland, coral reefs, islands and surrounding waters form a vast marine ecosystem. Living organisms have helped build the landscape itself.",
+    highlights: [
+      "Coral reefs and island habitats",
+      "A wide variety of marine life",
+      "An ecosystem off the Queensland coast",
+    ],
+    lenses: {
+      sense:
+        "A reef is built by living things. Look for both the structure and the animals that use it.",
+      story:
+        "The property protects a large connected marine area with many habitats. Its variety is more than a collection of colourful corals.",
+      ritual:
+        "In an underwater photograph, find a living animal and a shelter it could use. How are the two connected?",
+    },
+    moments: [
+      "Distinguish a coral colony from the larger reef.",
+      "Think about what a sheltered patch offers to a small fish.",
+    ],
+    source: "https://whc.unesco.org/en/list/154/",
+    image: "assets/locator-4.svg",
+    season: "Not travel advice",
+  },
+  {
+    name: "Petra",
+    location: "Jordan",
+    year: "1985",
+    category: "Cultural",
+    significance: "A trading city worked into the rock",
+    criteria: ["i", "iii", "iv"],
+    description:
+      "Part built and part carved into sandstone, Petra stood at an important meeting of trade routes. Its water system made life in this dry setting possible.",
+    highlights: [
+      "Rock-cut tombs and temples",
+      "Nabataean and Hellenistic influences",
+      "Water collection and distribution",
+    ],
+    lenses: {
+      sense:
+        "Look at the difference between a building placed on rock and a facade cut into it.",
+      story:
+        "Petra was an important Nabataean caravan centre. Its architecture draws on several traditions, while its water engineering supported settlement in an arid landscape.",
+      ritual:
+        "Look for a water channel in a plan or photograph. What would the city need to do when rain was scarce?",
+    },
+    moments: [
+      "Trace the edge where a carved facade meets the cliff.",
+      "Consider how trade and water shaped the same city.",
+    ],
+    source: "https://whc.unesco.org/en/list/326/",
+    image: "assets/locator-5.svg",
+    season: "Not travel advice",
+  },
+];

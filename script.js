@@ -1,465 +1,424 @@
-const heritageSites = [
-  {
-    "name": "Machu Picchu",
-    "location": "Peru",
-    "year": "1983",
-    "category": "Mixed",
-    "significance": "An Inca city shaped around its mountain",
-    "criteria": [
-      "i",
-      "iii",
-      "vii",
-      "ix"
-    ],
-    "description": "Stone terraces follow a ridge between the Andes and the Amazon Basin. The city and its mountain forest are protected together.",
-    "highlights": [
-      "Stone terraces and water channels",
-      "An Inca settlement on a steep ridge",
-      "Mountain forest and varied habitats"
-    ],
-    "lenses": {
-      "sense": "Notice how the terraces follow the slope rather than flattening it. The city works with its mountain.",
-      "story": "Built in the fifteenth century, the settlement brings together ceremonial, agricultural and residential spaces. Its precise role is still debated.",
-      "ritual": "In a photograph, trace one terrace from end to end. How does it make a steep slope usable?"
-    },
-    "moments": [
-      "Look for the meeting of built stone and natural rock.",
-      "Ask what a water channel makes possible."
-    ],
-    "source": "https://whc.unesco.org/en/list/274/",
-    "image": "assets/locator-0.svg",
-    "season": "Not travel advice"
-  },
-  {
-    "name": "Angkor",
-    "location": "Cambodia",
-    "year": "1992",
-    "category": "Cultural",
-    "significance": "A city built around temples and water",
-    "criteria": [
-      "i",
-      "ii",
-      "iii",
-      "iv"
-    ],
-    "description": "Temples, reservoirs and canals survive across a vast archaeological landscape. Angkor was a centre of the Khmer Empire, not a single temple.",
-    "highlights": [
-      "Angkor Wat and the Bayon",
-      "Reservoirs, canals and communication routes",
-      "Khmer architecture across several centuries"
-    ],
-    "lenses": {
-      "sense": "Look beyond the towers. Water and the space between buildings are part of this place too.",
-      "story": "The archaeological park holds remains of Khmer capitals from the ninth to the fifteenth century. Its architecture and water system reveal a large, connected city.",
-      "ritual": "Compare a temple plan with a reservoir. What does each tell you about the people who built the city?"
-    },
-    "moments": [
-      "Separate the idea of Angkor from the single temple Angkor Wat.",
-      "Look for a connection between a building and water."
-    ],
-    "source": "https://whc.unesco.org/en/list/668/",
-    "image": "assets/locator-1.svg",
-    "season": "Not travel advice"
-  },
-  {
-    "name": "Serengeti National Park",
-    "location": "Tanzania",
-    "year": "1981",
-    "category": "Natural",
-    "significance": "A landscape kept alive by movement",
-    "criteria": [
-      "vii",
-      "x"
-    ],
-    "description": "The plains support a vast annual migration of wildebeest, zebra and gazelle. The movement of animals is central to the park's value.",
-    "highlights": [
-      "The annual movement of large herds",
-      "Grassland and woodland habitats",
-      "Predators and their prey"
-    ],
-    "lenses": {
-      "sense": "Think of the landscape as a route, not a still view. The herds need room to move.",
-      "story": "The migration links feeding grounds across the wider ecosystem. Protecting one beautiful patch alone would not protect that movement.",
-      "ritual": "On a map, ask where a moving herd could go next. What happens if that route is cut off?"
-    },
-    "moments": [
-      "Look for the link between rainfall, grass and movement.",
-      "Consider why a park boundary cannot explain a whole ecosystem."
-    ],
-    "source": "https://whc.unesco.org/en/list/156/",
-    "image": "assets/locator-2.svg",
-    "season": "Not travel advice"
-  },
-  {
-    "name": "Old City of Dubrovnik",
-    "location": "Croatia",
-    "year": "1979",
-    "category": "Cultural",
-    "significance": "A city with a long memory",
-    "criteria": [
-      "i",
-      "iii",
-      "iv"
-    ],
-    "description": "Gothic, Renaissance and Baroque buildings share a small city on the Adriatic. Earthquake and conflict have made restoration part of its history.",
-    "highlights": [
-      "Churches, monasteries and palaces",
-      "Gothic, Renaissance and Baroque architecture",
-      "Repair after the 1667 earthquake and later conflict"
-    ],
-    "lenses": {
-      "sense": "Look for buildings from different periods standing next to one another. A city is built in layers.",
-      "story": "Dubrovnik became an important Mediterranean sea power from the thirteenth century. Its buildings survived an earthquake and later damage, with restoration continuing that history.",
-      "ritual": "Choose two neighbouring buildings in a photograph. What clues suggest they come from different times?"
-    },
-    "moments": [
-      "Notice the relationship between the old city and the sea.",
-      "Ask which details might have been repaired."
-    ],
-    "source": "https://whc.unesco.org/en/list/95/",
-    "image": "assets/locator-3.svg",
-    "season": "Not travel advice"
-  },
-  {
-    "name": "Great Barrier Reef",
-    "location": "Australia",
-    "year": "1981",
-    "category": "Natural",
-    "significance": "Living structures on an enormous scale",
-    "criteria": [
-      "vii",
-      "viii",
-      "ix",
-      "x"
-    ],
-    "description": "Off Queensland, coral reefs, islands and surrounding waters form a vast marine ecosystem. Living organisms have helped build the landscape itself.",
-    "highlights": [
-      "Coral reefs and island habitats",
-      "A wide variety of marine life",
-      "An ecosystem off the Queensland coast"
-    ],
-    "lenses": {
-      "sense": "A reef is built by living things. Look for both the structure and the animals that use it.",
-      "story": "The property protects a large connected marine area with many habitats. Its variety is more than a collection of colourful corals.",
-      "ritual": "In an underwater photograph, find a living animal and a shelter it could use. How are the two connected?"
-    },
-    "moments": [
-      "Distinguish a coral colony from the larger reef.",
-      "Think about what a sheltered patch offers to a small fish."
-    ],
-    "source": "https://whc.unesco.org/en/list/154/",
-    "image": "assets/locator-4.svg",
-    "season": "Not travel advice"
-  },
-  {
-    "name": "Petra",
-    "location": "Jordan",
-    "year": "1985",
-    "category": "Cultural",
-    "significance": "A trading city worked into the rock",
-    "criteria": [
-      "i",
-      "iii",
-      "iv"
-    ],
-    "description": "Part built and part carved into sandstone, Petra stood at an important meeting of trade routes. Its water system made life in this dry setting possible.",
-    "highlights": [
-      "Rock-cut tombs and temples",
-      "Nabataean and Hellenistic influences",
-      "Water collection and distribution"
-    ],
-    "lenses": {
-      "sense": "Look at the difference between a building placed on rock and a facade cut into it.",
-      "story": "Petra was an important Nabataean caravan centre. Its architecture draws on several traditions, while its water engineering supported settlement in an arid landscape.",
-      "ritual": "Look for a water channel in a plan or photograph. What would the city need to do when rain was scarce?"
-    },
-    "moments": [
-      "Trace the edge where a carved facade meets the cliff.",
-      "Consider how trade and water shaped the same city."
-    ],
-    "source": "https://whc.unesco.org/en/list/326/",
-    "image": "assets/locator-5.svg",
-    "season": "Not travel advice"
+// Catalog data is UNESCO CC BY-SA 4.0. See data/NOTICE.md for transformations.
+"use strict";
+const $ = (id) => document.getElementById(id),
+  CAP = 6,
+  LEGACY = ["274", "668", "156", "95", "154", "326"];
+let catalog = [],
+  view = [],
+  current = null,
+  offset = 0,
+  activeLens = 0,
+  ready = false,
+  mapFailed = false;
+const normalize = (s) =>
+  s
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "")
+    .toLowerCase();
+let legacy = [],
+  extra = [];
+let storageIssue = false;
+try {
+  const v = JSON.parse(localStorage.getItem("unesco-favorites") || "[]");
+  legacy = Array.isArray(v)
+    ? v.filter((i) => Number.isInteger(i) && i >= 0 && i < 6)
+    : [];
+  const e = JSON.parse(localStorage.getItem("unesco-favorites-ids") || "[]");
+  extra = Array.isArray(e) ? e.filter((i) => typeof i === "string") : [];
+} catch {
+  storageIssue = true;
+}
+const saved = (id) =>
+  LEGACY.includes(id)
+    ? legacy.includes(LEGACY.indexOf(id))
+    : extra.includes(id);
+const position = () => {
+  const i = view.indexOf(current);
+  $("sitePosition").textContent =
+    i < 0
+      ? "Outside this selection"
+      : `${i + 1} / ${view.length.toLocaleString("en")}`;
+};
+const status = (s) => ($("statusMessage").textContent = s);
+const closeNotes = () => {
+  $("place-notes").hidden = true;
+  $("read-place").setAttribute("aria-expanded", "false");
+  $("read-place").innerHTML =
+    'Read the place <span aria-hidden="true">↓</span>';
+  $("official-description").open = false;
+  document.querySelector(".reflection").open = false;
+  document.querySelector(".reference").open = false;
+};
+function closeBrowse(focus = false) {
+  $("collection").hidden = true;
+  $("collection-toggle").setAttribute("aria-expanded", "false");
+  $("heroCard").hidden = false;
+  if (focus) $("collection-toggle").focus();
+}
+function countSaved() {
+  $("favoriteCount").textContent =
+    `${catalog.filter((s) => saved(s.id)).length} saved places · private to this browser`;
+  $("favoriteBtn").textContent =
+    current && saved(current.id) ? "Saved ✓" : "Save favorite";
+}
+function filterSites() {
+  const q = normalize($("place-search").value.trim()),
+    country = $("country-filter").value,
+    category = $("category-filter").value;
+  view = catalog.filter(
+    (s) =>
+      (!q || normalize(s.name + " " + s.countries.join(" ")).includes(q)) &&
+      (!country || s.countries.includes(country)) &&
+      (!category || s.category === category) &&
+      (!$("saved-only").checked || saved(s.id)),
+  );
+  offset = 0;
+  renderResults();
+  if (current) {
+    position();
+    $("nextBtn").disabled = !view.length;
+    $("prevBtn").disabled = !view.length;
   }
-];
-
-const refs = {
-  card: document.getElementById('heroCard'),
-  name: document.getElementById('siteName'),
-  location: document.getElementById('siteLocation'),
-  description: document.getElementById('siteDescription'),
-  year: document.getElementById('siteYear'),
-  season: document.getElementById('siteSeason'),
-  significance: document.getElementById('siteSignificance'),
-  criteria: document.getElementById('siteCriteria'),
-  highlights: document.getElementById('siteHighlights'),
-  categoryBadge: document.getElementById('categoryBadge'),
-  image: document.getElementById('siteImage'),
-  button: document.getElementById('shuffleBtn'),
-  prevButton: document.getElementById('prevBtn'),
-  nextButton: document.getElementById('nextBtn'),
-  sitePosition: document.getElementById('sitePosition'),
-  favoriteButton: document.getElementById('favoriteBtn'),
-  favoriteCount: document.getElementById('favoriteCount'),
-  favoritesList: document.getElementById('favoritesList'),
-  statusMessage: document.getElementById('statusMessage'),
-  contentLayer: document.querySelector('.content-layer'),
-  lensBody: document.getElementById('lensBody'),
-  moments: document.getElementById('microMoments'),
-  lensButtons: {
-    sense: document.getElementById('lensSenseBtn'),
-    story: document.getElementById('lensStoryBtn'),
-    ritual: document.getElementById('lensRitualBtn')
+  $("shuffleBtn").disabled = !view.length;
+}
+function renderResults() {
+  const list = $("place-list");
+  list.replaceChildren();
+  view.slice(offset, offset + CAP).forEach((s) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.dataset.id = s.id;
+    b.textContent = s.name;
+    const sub = document.createElement("span");
+    sub.textContent = s.countries.join(" · ");
+    b.append(sub);
+    b.setAttribute("aria-current", String(current?.id === s.id));
+    b.onclick = () => {
+      closeBrowse();
+      renderSite(s, true);
+    };
+    list.append(b);
+  });
+  $("result-count").textContent = view.length
+    ? `${view.length.toLocaleString("en")} places found`
+    : "No places match. Try another name or clear a filter.";
+  $("result-page").textContent = view.length
+    ? `${offset + 1}-${Math.min(offset + CAP, view.length)} of ${view.length.toLocaleString("en")}`
+    : "0 results";
+  $("results-prev").disabled = offset === 0;
+  $("results-next").disabled = offset + CAP >= view.length;
+  countSaved();
+}
+function lens() {
+  if (!current) return;
+  const custom = curatedSites[LEGACY.indexOf(current.id)];
+  const generic = [
+    "Start with the locator and the official description. What connects this place to its setting?",
+    "Read the full UNESCO description above. Which events or traditions connect the place to its history?",
+    "Which detail would you want to understand better? Follow the official listing before relying on a map point or planning a visit.",
+  ];
+  $("lensBody").textContent = custom
+    ? custom.lenses[["sense", "story", "ritual"][activeLens]]
+    : generic[activeLens];
+  [...document.querySelectorAll("[role=tab]")].forEach((b, i) => {
+    b.setAttribute("aria-selected", String(i === activeLens));
+    b.tabIndex = i === activeLens ? 0 : -1;
+    b.setAttribute("aria-controls", "lensBody");
+    if (i === activeLens) $("lensBody").setAttribute("aria-labelledby", b.id);
+  });
+}
+function renderSite(s, focus = false) {
+  current = s;
+  closeNotes();
+  $("siteName").textContent = s.name;
+  $("siteName").classList.toggle("long-title", s.name.length > 110);
+  $("siteLocation").textContent = s.countries.join(" · ");
+  $("categoryBadge").textContent = s.category;
+  const text =
+    s.description ||
+    "No English description is supplied in this dataset snapshot. Read the official listing for more.";
+  const first =
+    text.match(/^.{1,320}(?:[.!?](?:\s|$)|$)/)?.[0] ||
+    text.slice(0, Math.min(text.length, 300)).replace(/\s+\S*$/, "") + "…";
+  $("siteDescription").textContent = first;
+  $("full-description").textContent = text;
+  $("siteYear").textContent = s.year || "Not supplied";
+  $("siteCriteria").textContent = s.criteria || "Not supplied in this snapshot";
+  $("site-source").href = `https://whc.unesco.org/en/list/${s.id}/`;
+  $("place-number").textContent = "";
+  $("sitePosition").textContent =
+    `${view.indexOf(s) + 1} / ${view.length.toLocaleString("en")}`;
+  const custom = curatedSites[LEGACY.indexOf(s.id)];
+  $("siteSignificance").textContent = custom?.significance || "A closer look";
+  $("siteHighlights").replaceChildren();
+  (
+    custom?.highlights || [
+      `${s.category} heritage`,
+      s.region || "Region not supplied",
+    ]
+  )
+    .slice(0, 3)
+    .forEach((t) => {
+      const li = document.createElement("li");
+      li.textContent = t;
+      $("siteHighlights").append(li);
+    });
+  $("microMoments").replaceChildren();
+  (
+    custom?.moments || [
+      "Name one question the official description raises for you.",
+      "Consider what a single point on a map cannot tell you.",
+    ]
+  )
+    .slice(0, 2)
+    .forEach((t) => {
+      const li = document.createElement("li");
+      li.textContent = t;
+      $("microMoments").append(li);
+    });
+  activeLens = 0;
+  lens();
+  const point = s.point;
+  document.querySelector(".map-point").toggleAttribute("hidden", !point);
+  $("map-country").textContent = point
+    ? "UNESCO reference coordinate"
+    : "No reference coordinate supplied";
+  if (point) {
+    for (const id of ["point-ring", "point-dot"]) {
+      $(id).setAttribute("cx", (point.lon + 180) * 2.5);
+      $(id).setAttribute("cy", (90 - point.lat) * 2.5);
+    }
+  }
+  $("siteImage").alt = point
+    ? `World locator with a representative point for ${s.name}. Not property boundaries.`
+    : "World reference map; no point is supplied for this property.";
+  if (mapFailed) showMapFailure();
+  document.documentElement.style.setProperty(
+    "--accent",
+    s.category === "Natural" ? "#385b4a" : "#665038",
+  );
+  $("nextBtn").disabled = view.length < 2;
+  $("prevBtn").disabled = view.length < 2;
+  countSaved();
+  history.replaceState(null, "", `#site=${s.id}`);
+  status(
+    storageIssue
+      ? "Saved data could not be read. Nothing has been overwritten."
+      : `Now exploring ${s.name}.`,
+  );
+  if (focus) {
+    $("siteName").focus({ preventScroll: true });
+    $("siteName").scrollIntoView({ block: "start", behavior: "instant" });
+  }
+}
+function step(n) {
+  if (!current || !view.length) return;
+  const i = view.indexOf(current);
+  renderSite(
+    view[
+      i < 0
+        ? n > 0
+          ? 0
+          : view.length - 1
+        : (i + n + view.length) % view.length
+    ],
+    true,
+  );
+}
+async function load() {
+  ready = false;
+  $("retry-catalog").hidden = true;
+  for (const id of [
+    "collection-toggle",
+    "nextBtn",
+    "prevBtn",
+    "favoriteBtn",
+    "read-place",
+  ])
+    $(id).disabled = true;
+  try {
+    const r = await fetch("data/catalog.json");
+    if (!r.ok) throw Error("catalog");
+    const data = await r.json();
+    if (!Array.isArray(data.sites) || data.sites.length !== data.count)
+      throw Error("catalog");
+    catalog = data.sites;
+    view = [...catalog];
+    const countries = [...new Set(catalog.flatMap((s) => s.countries))].sort(
+      (a, b) => a.localeCompare(b),
+    );
+    $("country-filter").replaceChildren(
+      new Option("Every country", ""),
+      ...countries.map((c) => new Option(c, c)),
+    );
+    const id = location.hash.match(/^#site=(\d+)$/)?.[1] || "274";
+    const s =
+      catalog.find((s) => s.id === id) || catalog.find((s) => s.id === "274");
+    for (const name of [
+      "collection-toggle",
+      "nextBtn",
+      "prevBtn",
+      "favoriteBtn",
+      "read-place",
+    ])
+      $(name).disabled = false;
+    ready = true;
+    renderSite(s);
+    renderResults();
+    $("heroCard").removeAttribute("aria-busy");
+  } catch {
+    status("The catalog could not load. Your saved places have not changed.");
+    $("retry-catalog").hidden = false;
+  }
+}
+$("retry-catalog").onclick = load;
+$("collection-toggle").onclick = () => {
+  if (!ready) return;
+  if (!$("collection").hidden) {
+    closeBrowse(true);
+    return;
+  }
+  $("collection").hidden = false;
+  $("heroCard").hidden = true;
+  $("collection-toggle").setAttribute("aria-expanded", "true");
+  renderResults();
+  $("place-search").focus();
+};
+$("close-browse").onclick = () => closeBrowse(true);
+$("collection").addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    e.preventDefault();
+    closeBrowse(true);
+  }
+});
+for (const id of [
+  "place-search",
+  "country-filter",
+  "category-filter",
+  "saved-only",
+])
+  $(id).addEventListener(
+    id === "place-search" ? "input" : "change",
+    filterSites,
+  );
+for (const [id, n] of [
+  ["results-prev", -1],
+  ["results-next", 1],
+])
+  $(id).onclick = () => {
+    offset += n * CAP;
+    renderResults();
+    $("place-list").firstElementChild?.focus();
+  };
+$("nextBtn").onclick = () => step(1);
+$("prevBtn").onclick = () => step(-1);
+$("shuffleBtn").onclick = () => {
+  if (!view.length) return;
+  const options = view.filter((s) => s !== current);
+  closeBrowse();
+  renderSite(
+    options[Math.floor(Math.random() * options.length)] || view[0],
+    true,
+  );
+};
+$("favoriteBtn").onclick = () => {
+  if (!current || storageIssue) return;
+  const id = current.id,
+    old = legacy.slice(),
+    oldExtra = extra.slice();
+  try {
+    if (LEGACY.includes(id)) {
+      const i = LEGACY.indexOf(id);
+      legacy = saved(id) ? legacy.filter((n) => n !== i) : [...legacy, i];
+      localStorage.setItem("unesco-favorites", JSON.stringify(legacy));
+    } else {
+      extra = saved(id) ? extra.filter((n) => n !== id) : [...extra, id];
+      localStorage.setItem("unesco-favorites-ids", JSON.stringify(extra));
+    }
+    countSaved();
+    status(
+      saved(id)
+        ? "Place saved in this browser."
+        : "Place removed from saved places.",
+    );
+  } catch {
+    legacy = old;
+    extra = oldExtra;
+    status(
+      "This browser could not save the change. Your earlier saved places are unchanged.",
+    );
   }
 };
-
-let currentIndex = -1;
-const FAVORITES_KEY = 'unesco-favorites';
-const favoriteIndexes = new Set(JSON.parse(localStorage.getItem(FAVORITES_KEY) ?? '[]'));
-let touchStartX = 0;
-let touchDeltaX = 0;
-let activeLens = 'sense';
-let navigating=false;
-let firstRender=true;
-const reducedMotion=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-function randomIndex(exclude) {
-  if (heritageSites.length < 2) {
-    return 0;
+$("read-place").onclick = () => {
+  const opening = $("place-notes").hidden;
+  $("place-notes").hidden = !opening;
+  $("read-place").setAttribute("aria-expanded", String(opening));
+  $("read-place").innerHTML = opening
+    ? 'Close field notes <span aria-hidden="true">↑</span>'
+    : 'Read the place <span aria-hidden="true">↓</span>';
+  if (opening) {
+    $("siteSignificance").tabIndex = -1;
+    $("siteSignificance").focus({ preventScroll: true });
+    $("place-notes").scrollIntoView({ block: "start", behavior: "instant" });
   }
-
-  let next = Math.floor(Math.random() * heritageSites.length);
-  while (next === exclude) {
-    next = Math.floor(Math.random() * heritageSites.length);
+};
+const tabs = [...document.querySelectorAll("[role=tab]")];
+tabs.forEach((b, i) => {
+  b.onclick = () => {
+    activeLens = i;
+    lens();
+  };
+  b.onkeydown = (e) => {
+    if (!["ArrowRight", "ArrowLeft", "Home", "End"].includes(e.key)) return;
+    e.preventDefault();
+    activeLens =
+      e.key === "Home"
+        ? 0
+        : e.key === "End"
+          ? 2
+          : (i + (e.key === "ArrowRight" ? 1 : -1) + 3) % 3;
+    lens();
+    tabs[activeLens].focus();
+  };
+});
+function showMapFailure() {
+  mapFailed = true;
+  $("siteImage").hidden = true;
+  document.querySelector(".map-point").setAttribute("hidden", "");
+  $("map-country").textContent =
+    "Map unavailable. The description and source remain usable.";
+}
+$("siteImage").onerror = showMapFailure;
+if ($("siteImage").complete && !$("siteImage").naturalWidth) showMapFailure();
+window.addEventListener("hashchange", () => {
+  const id = location.hash.match(/^#site=(\d+)$/)?.[1],
+    s = catalog.find((s) => s.id === id);
+  if (s) {
+    closeBrowse();
+    renderSite(s, true);
   }
-  return next;
-}
-
-function preloadImage(url) {
-  const img = new Image();
-  img.src = url;
-}
-
-function updateFavoriteCount() {
-  refs.favoriteCount.textContent = `Saved places: ${favoriteIndexes.size}/${heritageSites.length}`;
-
-  if (favoriteIndexes.size === 0) {
-    refs.favoritesList.textContent = 'No saved places yet.';
+});
+document.addEventListener("keydown", (e) => {
+  if (
+    e.defaultPrevented ||
+    e.repeat ||
+    e.ctrlKey ||
+    e.metaKey ||
+    e.altKey ||
+    !ready ||
+    !$("collection").hidden ||
+    e.target.closest(
+      "button,a,input,select,textarea,summary,[contenteditable=true]",
+    )
+  )
     return;
+  if (e.key === "ArrowRight") {
+    e.preventDefault();
+    step(1);
   }
-
-  const names = [...favoriteIndexes].map((index) => heritageSites[index].name);
-  refs.favoritesList.textContent = `${names.join(' · ')}`;
-}
-
-function setStatus(message) {
-  refs.statusMessage.textContent = message;
-}
-
-function accentForCategory(category) {
-  return category === 'Natural'
-    ? { accent: '#385b4a', soft: 'rgba(137, 231, 209, 0.26)' }
-    : { accent: '#665038', soft: 'rgba(155, 209, 255, 0.24)' };
-}
-
-function renderHighlights(items) {
-  refs.highlights.innerHTML = '';
-  items.forEach((item) => {
-    const li = document.createElement('li');
-    li.textContent = item;
-    refs.highlights.append(li);
-  });
-}
-
-function renderMoments(items) {
-  refs.moments.innerHTML = '';
-  items.forEach((item) => {
-    const li = document.createElement('li');
-    li.textContent = item;
-    refs.moments.append(li);
-  });
-}
-
-function renderLens(site) {
-  refs.lensBody.textContent = site.lenses[activeLens];
-  Object.entries(refs.lensButtons).forEach(([key, button]) => {
-    const selected = key === activeLens;
-    button.classList.toggle('is-active', selected);
-    button.setAttribute('aria-selected', String(selected));
-    button.tabIndex=selected?0:-1;
-    if(selected)refs.lensBody.setAttribute('aria-labelledby',button.id);
-  });
-}
-
-function updatePosition(index) {
-  refs.sitePosition.textContent = `${index + 1} / ${heritageSites.length}`;
-}
-
-function pulseLayer() {
-  refs.contentLayer.classList.remove('is-transitioning');
-  requestAnimationFrame(() => refs.contentLayer.classList.add('is-transitioning'));
-}
-
-function renderSite(index, direction = 'next') {
-  if(navigating)return;
-  navigating=true;
-  const initial=firstRender;firstRender=false;
-  refs.card.setAttribute('aria-busy','true');
-  [refs.prevButton,refs.nextButton,refs.favoriteButton].forEach(b=>b.disabled=true);
-  const site = heritageSites[index];
-  refs.card.classList.add('loading');
-  refs.button.disabled = true;
-  refs.button.setAttribute('aria-busy', 'true');
-
-  const accent = accentForCategory(site.category);
-  document.documentElement.style.setProperty('--accent', accent.accent);
-  document.documentElement.style.setProperty('--accent-soft', accent.soft);
-
-  setTimeout(() => {
-    refs.card.dataset.direction = direction;
-    refs.name.textContent = site.name;
-    refs.location.textContent = site.location;
-    refs.description.textContent = site.description;
-    refs.year.textContent = site.year;
-    refs.season.textContent = site.season;
-    refs.significance.textContent = site.significance;
-    refs.criteria.textContent = site.criteria.map((criterion) => `(${criterion})`).join(' ');
-    refs.categoryBadge.textContent = site.category;
-    refs.image.hidden=false;
-    document.querySelector('.image-stack figcaption').innerHTML='<span id="map-country"></span><span>COUNTRY LOCATOR · NOT SITE BOUNDARIES</span>';
-    refs.image.src = site.image;
-    refs.image.alt = `World locator: ${site.location} highlighted. Not site boundaries or a photograph.`;
-    document.getElementById("site-source").href=site.source;
-    document.getElementById("map-country").textContent=site.location;
-    document.getElementById("place-number").textContent=String(index+1).padStart(2,"0");
-    document.querySelectorAll("[data-place]").forEach((b,i)=>b.setAttribute("aria-current",String(i===index)));
-    renderHighlights(site.highlights);
-    renderMoments(site.moments);
-    renderLens(site);
-
-    refs.favoriteButton.textContent = favoriteIndexes.has(index) ? 'Saved ✓' : 'Save favorite';
-    updatePosition(index);
-    pulseLayer();
-    refs.card.classList.remove('loading');
-    navigating=false;
-    refs.card.removeAttribute('aria-busy');
-    [refs.prevButton,refs.nextButton,refs.favoriteButton].forEach(b=>b.disabled=false);
-    if(!initial){refs.name.focus({preventScroll:true});refs.name.scrollIntoView({block:'start',behavior:'instant'});}
-    refs.button.disabled = false;
-    refs.button.removeAttribute('aria-busy');
-    setStatus(`Now exploring ${site.name}.`);
-  }, reducedMotion()?0:170);
-
-  currentIndex = index;
-  const nextIndex = randomIndex(index);
-  preloadImage(heritageSites[nextIndex].image);
-}
-
-refs.button.addEventListener('click', () => {
-  renderSite(randomIndex(currentIndex), 'next');
-
-  if(!reducedMotion())refs.button.animate(
-    [
-      { transform: 'scale(1)' },
-      { transform: 'scale(0.97)' },
-      { transform: 'scale(1.01)' },
-      { transform: 'scale(1)' }
-    ],
-    {
-      duration: 420,
-      easing: 'cubic-bezier(.2,.8,.2,1)'
-    }
-  );
-});
-
-function stepSite(step) {
-  if (currentIndex < 0) {
-    return;
-  }
-
-  const nextIndex = (currentIndex + step + heritageSites.length) % heritageSites.length;
-  renderSite(nextIndex, step < 0 ? 'prev' : 'next');
-}
-
-refs.prevButton.addEventListener('click', () => stepSite(-1));
-refs.nextButton.addEventListener('click', () => stepSite(1));
-
-refs.favoriteButton.addEventListener('click', () => {
-  if (currentIndex < 0) {
-    return;
-  }
-
-  const site = heritageSites[currentIndex];
-  if (favoriteIndexes.has(currentIndex)) {
-    favoriteIndexes.delete(currentIndex);
-    setStatus(`Removed ${site.name} from your saved places.`);
-    refs.favoriteButton.textContent = 'Save favorite';
-  } else {
-    favoriteIndexes.add(currentIndex);
-    setStatus(`Saved ${site.name} to your saved places.`);
-    refs.favoriteButton.textContent = 'Saved ✓';
-  }
-
-  localStorage.setItem(FAVORITES_KEY, JSON.stringify([...favoriteIndexes]));
-  updateFavoriteCount();
-});
-
-Object.entries(refs.lensButtons).forEach(([lens, button]) => {
-  button.addEventListener('click', () => {
-    activeLens = lens;
-    if (currentIndex >= 0) {
-      const site = heritageSites[currentIndex];
-      renderLens(site);
-      setStatus(`Lens changed to ${refs.lensButtons[lens].textContent}.`);
-    }
-  });
-});
-
-document.addEventListener('keydown', (event) => {
-  if(event.defaultPrevented||event.repeat||event.ctrlKey||event.altKey||event.metaKey||event.shiftKey)return;
-  if(event.target.closest('button,a,input,select,textarea,summary,[contenteditable=true]'))return;
-  if (event.key === 'ArrowLeft') {
-    event.preventDefault();
-    stepSite(-1);
-  }
-
-  if (event.key === 'ArrowRight') {
-    event.preventDefault();
-    stepSite(1);
-  }
-
-  if (event.key === ' ' || event.key === 'Enter') {
-    event.preventDefault();
-    refs.button.click();
-  }
-
-  if (event.key.toLowerCase() === 'f') {
-    refs.favoriteButton.click();
-  }
-
-  if (['1', '2', '3'].includes(event.key)) {
-    const lensMap = { '1': 'sense', '2': 'story', '3': 'ritual' };
-    const targetLens = lensMap[event.key];
-    refs.lensButtons[targetLens].click();
+  if (e.key === "ArrowLeft") {
+    e.preventDefault();
+    step(-1);
   }
 });
-
-refs.card.addEventListener('touchstart', (event) => {
-  touchStartX = event.changedTouches[0].clientX;
-  touchDeltaX = 0;
-});
-
-refs.card.addEventListener('touchmove', (event) => {
-  touchDeltaX = event.changedTouches[0].clientX - touchStartX;
-});
-
-refs.card.addEventListener('touchend', () => {
-  if (Math.abs(touchDeltaX) < 45) {
-    return;
-  }
-  stepSite(touchDeltaX > 0 ? -1 : 1);
-});
-
-updateFavoriteCount();
-setStatus('Tip: swipe or use ←/→ to navigate. Press Space/Enter to discover and F to favorite.');
-renderSite(0, 'next');
+load();

@@ -1,0 +1,58 @@
+[
+  {
+    "width": 320,
+    "fullCount": 1273,
+    "visiblePlaces": 1,
+    "browseCap": 12,
+    "legacyBytesPreserved": true,
+    "extraSaveReload": true,
+    "deepLink": true,
+    "filters": true,
+    "noResults": true,
+    "missingPoint": true,
+    "lensKeyboard": true,
+    "errors": []
+  },
+  {
+    "width": 390,
+    "fullCount": 1273,
+    "visiblePlaces": 1,
+    "browseCap": 12,
+    "legacyBytesPreserved": true,
+    "extraSaveReload": true,
+    "deepLink": true,
+    "filters": true,
+    "noResults": true,
+    "missingPoint": true,
+    "lensKeyboard": true,
+    "errors": []
+  },
+  {
+    "width": 844,
+    "fullCount": 1273,
+    "visiblePlaces": 1,
+    "browseCap": 12,
+    "legacyBytesPreserved": true,
+    "extraSaveReload": true,
+    "deepLink": true,
+    "filters": true,
+    "noResults": true,
+    "missingPoint": true,
+    "lensKeyboard": true,
+    "errors": []
+  },
+  {
+    "width": 1320,
+    "fullCount": 1273,
+    "visiblePlaces": 1,
+    "browseCap": 12,
+    "legacyBytesPreserved": true,
+    "extraSaveReload": true,
+    "deepLink": true,
+    "filters": true,
+    "noResults": true,
+    "missingPoint": true,
+    "lensKeyboard": true,
+    "errors": []
+  }
+]
