@@ -24,6 +24,13 @@ const STORIES = {
   <circle pathLength="1" cx="700" cy="236" r="30"/>
   <path pathLength="1" d="M700,194 v-20 M670,206 l-14,-14 M730,206 l14,-14 M662,236 h-20 M738,236 h20"/>
   <path pathLength="1" d="M140,200 q12,-10 24,0 M176,188 q12,-10 24,0 M240,226 q12,-10 24,0 M282,240 q10,-8 20,0"/>
+  <path pathLength="1" d="M180,430 C215,406 252,398 288,406"/>
+  <path pathLength="1" d="M196,452 C228,430 262,424 294,432"/>
+  <path pathLength="1" d="M600,432 C656,412 726,420 786,450"/>
+  <path pathLength="1" d="M628,456 C678,440 736,448 776,468"/>
+  <path pathLength="1" class="waterline" d="M60,548 C160,528 280,552 400,532 C470,522 520,528 550,522"/>
+  <path pathLength="1" d="M320,150 q30,-12 60,0 q30,12 60,0"/>
+  <path pathLength="1" d="M520,120 q24,-10 48,0 q24,10 48,0"/>
   <text class="note" x="85" y="292" transform="rotate(-2 85 292)">the ridge</text>
 </g>
 <g class="beat-layer beat-2">
@@ -80,7 +87,7 @@ const STORIES = {
   <path pathLength="1" d="M640,470 v-26 q10,-14 20,0 v26"/>
   <path pathLength="1" class="moat" d="M132,398 H418 V500 H132 Z"/>
   <text class="note" x="548" y="518" transform="rotate(-1 548 518)">the Bayon</text>
-  <text class="note" x="700" y="396" transform="rotate(2 700 396)">older capitals</text>
+  <text class="note" x="655" y="396" transform="rotate(2 655 396)">older capitals</text>
 </g>
 <g class="beat-layer beat-3">
   <path class="hatch" d="M486,312 h64 M566,318 h64 M506,326 h64"/>
@@ -160,6 +167,9 @@ const STORIES = {
   <path pathLength="1" class="waterline" d="M110,525 q30,-10 60,0 q30,10 60,0 q30,-10 60,0 q30,10 60,0 q30,-10 60,0 q30,10 60,0 q30,-10 60,0 q30,10 60,0 q30,-10 60,0"/>
   <path pathLength="1" d="M150,440 H840"/>
   <path pathLength="1" d="M200,440 V330 h16 v-16 h20 v16 h20 v-16 h20 v16 h20 v-16 h20 v16 h20 v-16 h20 v16 h20 v-16 h20 v16 h16 V440"/>
+  <path pathLength="1" d="M300,320 l20,-16 l20,16 M360,318 l20,-16 l20,16 M420,322 l20,-16 l20,16"/>
+  <path pathLength="1" d="M614,510 q20,16 40,0 l-6,12 h-28 Z"/>
+  <path pathLength="1" d="M634,510 v-26 l17,22"/>
   <path pathLength="1" d="M560,440 V300 q0,-28 30,-28 q30,0 30,28 V440"/>
   <path pathLength="1" d="M548,300 q0,-34 42,-34 q42,0 42,34"/>
   <path pathLength="1" d="M700,440 V350 h14 v-14 h18 v14 h18 v-14 h18 v14 h18 v-14 h18 v14 h14 V440"/>
@@ -206,6 +216,12 @@ const STORIES = {
   <path class="hatch" d="M210,185 l24,-11 M215,225 l24,-11 M220,265 l24,-11"/>
   <path pathLength="1" class="waterline" d="M240,230 q40,-12 80,0 q40,12 80,0 q40,-12 80,0 q40,12 80,0 q40,-12 80,0 q40,12 80,0"/>
   <path class="surf flow" d="M320,262 q10,-14 20,0 M380,258 q10,-14 20,0 M440,262 q10,-14 20,0 M500,258 q10,-14 20,0 M560,262 q10,-14 20,0 M620,258 q10,-14 20,0 M680,262 q10,-14 20,0 M740,258 q10,-14 20,0"/>
+  <path pathLength="1" class="waterline" d="M300,282 q30,-9 60,0 q30,9 60,0 q30,-9 60,0"/>
+  <path pathLength="1" class="coral" d="M430,470 C430,445 424,432 412,420 M430,456 C438,442 450,436 462,430 M430,470 C426,452 416,444 404,440"/>
+  <path pathLength="1" class="fish" d="M560,315 q10,-8 20,0 q-10,8 -20,0 M580,315 l8,-6 v12 Z"/>
+  <path pathLength="1" class="fish" d="M612,332 q9,-7 18,0 q-9,7 -18,0 M630,332 l7,-5 v10 Z"/>
+  <path pathLength="1" class="fish" d="M585,350 q8,-6 16,0 q-8,6 -16,0 M601,350 l6,-4 v8 Z"/>
+  <path pathLength="1" d="M714,430 q16,-12 32,0 q-4,14 -16,12 q-12,2 -16,-12 M736,420 l8,-8 M736,440 l8,8"/>
   <text class="note" x="246" y="334" transform="rotate(-1 246 334)">reef line</text>
 </g>
 <g class="beat-layer beat-2">

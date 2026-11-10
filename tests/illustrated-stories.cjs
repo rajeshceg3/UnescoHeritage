@@ -170,6 +170,20 @@ const ratio = (fg, bg) => {
             });
             assert.ok(bb.w >= 0.45, `stage width ${id} beat ${bIdx}: ${bb.w.toFixed(2)}`);
             assert.ok(bb.h >= 0.45, `stage height ${id} beat ${bIdx}: ${bb.h.toFixed(2)}`);
+            // every label fully inside the stage
+            const outside = await p.evaluate(() => {
+              const svg = document.querySelector("#storyArtInner svg");
+              const sr = svg.getBoundingClientRect();
+              const bad = [];
+              for (const n of document.querySelectorAll(".beat-layer.on .note")) {
+                const r = n.getBoundingClientRect();
+                if (r.left < sr.left - 1 || r.right > sr.right + 1 ||
+                    r.top < sr.top - 1 || r.bottom > sr.bottom + 1)
+                  bad.push(n.textContent);
+              }
+              return bad;
+            });
+            assert.deepEqual(outside, [], `labels outside stage ${id} beat ${bIdx}`);
             // every visible text node keeps readable contrast
             if (w === 390) {
               const noteRatios = await p.evaluate(() => {
