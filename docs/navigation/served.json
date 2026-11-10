@@ -1,0 +1,17 @@
+[
+  {
+    "file": "index.html",
+    "sha256": "5fba0c7821a6272f714cba36726fa15ccbd833b3188610a631a5236250075d24",
+    "url": "https://unesco-heritage-zeta.vercel.app/index.html"
+  },
+  {
+    "file": "script.js",
+    "sha256": "9a4ae0aa970824af4ddb1bf8d43855d7bb8d58b762da88b7860b39e8dfa57c0d",
+    "url": "https://unesco-heritage-zeta.vercel.app/script.js"
+  },
+  {
+    "file": "styles.css",
+    "sha256": "2073c57790cb171dcdaf75678e8c541b427822af0bb3b3fbb9252ac67d3a3437",
+    "url": "https://unesco-heritage-zeta.vercel.app/styles.css"
+  }
+]
