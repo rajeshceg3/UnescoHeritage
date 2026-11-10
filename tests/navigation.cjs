@@ -31,7 +31,7 @@ const { chromium } = require("playwright"),
           document.querySelector("#siteName").textContent !== "Loading…" &&
           !document.querySelector("#heroCard").hasAttribute("aria-busy"),
       );
-      assert.equal(await p.locator("details").getAttribute("open"), null);
+      assert.equal(await p.locator(".reference").getAttribute("open"), null);
       assert.equal(
         await p.evaluate(
           () => document.documentElement.scrollWidth > innerWidth,
@@ -102,7 +102,8 @@ const { chromium } = require("playwright"),
         previous,
       );
       assert.equal(await p.locator("#sitePosition").textContent(), first);
-      for (const lens of ["Story", "Ritual", "Sense"]) {
+      await p.locator("#read-place").click();
+      for (const lens of ["Context", "A question", "Notice"]) {
         await p.getByRole("tab", { name: lens, exact: true }).click();
         assert.equal(
           await p

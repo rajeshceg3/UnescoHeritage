@@ -1,122 +1,15 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>UNESCO Heritage • Immersive Explorer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Playfair+Display:wght@500;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="ambient-glow" aria-hidden="true"></div>
-    <div class="grain" aria-hidden="true"></div>
-
-    <main class="app-shell">
-      <section class="hero-card" id="heroCard">
-        <div class="image-stack">
-          <img id="siteImage" class="site-image" alt="UNESCO site" />
-          <div class="image-vignette"></div>
-          <div class="floating-orb orb-one"></div>
-          <div class="floating-orb orb-two"></div>
-        </div>
-
-        <div class="content-layer">
-          <header class="content-head">
-            <p class="eyebrow">UNESCO World Heritage</p>
-            <p id="categoryBadge" class="category-badge">Cultural</p>
-          </header>
-
-          <h1 id="siteName" tabindex="-1">Loading…</h1>
-          <p id="siteLocation" class="location"></p>
-          <p id="siteDescription" class="description"></p>
-
-          <div class="meta-grid">
-            <article class="meta-pill">
-              <p class="meta-label">Inscribed</p>
-              <p id="siteYear" class="meta-value"></p>
-            </article>
-            <article class="meta-pill">
-              <p class="meta-label">Best Season</p>
-              <p id="siteSeason" class="meta-value"></p>
-            </article>
-            <article class="meta-pill">
-              <p class="meta-label">Significance</p>
-              <p id="siteSignificance" class="meta-value"></p>
-            </article>
-            <article class="meta-pill">
-              <p class="meta-label">UNESCO Criteria</p>
-              <p id="siteCriteria" class="meta-value"></p>
-            </article>
-          </div>
-
-          <section class="highlight-panel" aria-labelledby="highlightHeading">
-            <p id="highlightHeading" class="meta-label">Highlights</p>
-            <ul id="siteHighlights" class="highlight-list"></ul>
-          </section>
-
-          <section class="story-panel" aria-labelledby="storyHeading">
-            <div class="story-head">
-              <p id="storyHeading" class="meta-label">Immersion lens</p>
-              <div class="lens-toggle" role="tablist" aria-label="Choose story lens">
-                <button id="lensSenseBtn" class="lens-btn is-active" role="tab" aria-selected="true" type="button">
-                  Sense
-                </button>
-                <button id="lensStoryBtn" class="lens-btn" role="tab" aria-selected="false" type="button">
-                  Story
-                </button>
-                <button id="lensRitualBtn" class="lens-btn" role="tab" aria-selected="false" type="button">
-                  Ritual
-                </button>
-              </div>
-            </div>
-            <p id="lensBody" class="lens-body"></p>
-            <p id="momentsLabel" class="meta-label">2-minute moments</p>
-            <ol id="microMoments" class="moments-list"></ol>
-          </section>
-
-          <nav class="nav-strip" aria-label="Site navigation">
-            <button id="prevBtn" class="nav-btn" type="button" aria-label="Previous destination">← Previous</button>
-            <div class="nav-indicator" aria-hidden="true">
-              <span id="sitePosition">1 / 1</span>
-            </div>
-            <button id="nextBtn" class="nav-btn" type="button" aria-label="Next destination">Next destination →</button>
-          </nav>
-
-          <div class="actions">
-            <button id="shuffleBtn" class="shuffle-btn" type="button">
-              <span>Surprise me</span>
-              <span class="arrow">→</span>
-            </button>
-            <button id="favoriteBtn" class="ghost-btn" type="button">Save favorite</button>
-          </div>
-
-          <section class="experience-footer" aria-label="Collection status">
-            <p id="favoriteCount" class="favorite-count" aria-live="polite"></p>
-            <p id="favoritesList" class="favorites-list" aria-live="polite"></p>
-            <p id="statusMessage" class="status-message" aria-live="polite"></p>
-          </section>
-        </div>
-      </section>
-      <details class="delight-compass"><summary>About this experience</summary>
-        <p class="compass-kicker">Experience North Star</p>
-        <h2 id="delightHeading">
-          “Could someone close this page and still remember the sounds, textures, rituals, and emotions of being there?”
-        </h2>
-        <ul class="compass-list">
-          <li>Arrival before information: open with mood, setting, and sensory cues before presenting facts.</li>
-          <li>Living culture over static data: foreground rituals, people, sounds, and daily rhythms of the place.</li>
-          <li>Embodied storytelling: write every line so visitors can picture themselves walking, listening, and discovering.</li>
-          <li>Meaningful memory: make each interaction feel like collecting moments, not collecting metadata.</li>
-        </ul>
-      </details>
-
-    </main>
-
-    <script src="script.js"></script>
-  </body>
-</html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Heritage - A small field guide</title><link rel="stylesheet" href="styles.css"></head><body>
+<header class="masthead"><a href="./" class="brand">heritage<span>A SMALL FIELD GUIDE</span></a><button id="collection-toggle" type="button" aria-expanded="false" aria-controls="collection">The six places <span aria-hidden="true">↗</span></button></header>
+<main class="app-shell">
+<section id="collection" hidden aria-label="Choose a place"><p class="eyebrow">Take a different path</p><div id="place-list"></div><p id="favoriteCount"></p><p id="favoritesList"></p><button id="shuffleBtn" type="button">Surprise me <span aria-hidden="true">↗</span></button></section>
+<section class="hero-card" id="heroCard" aria-labelledby="siteName">
+<div class="content-layer"><div class="place-heading"><p class="eyebrow">Places worth understanding</p><span id="place-number" aria-hidden="true">01</span></div><div class="place-intro"><header class="content-head"><p id="siteLocation" class="location"></p><p id="categoryBadge" class="category-badge"></p></header><h1 id="siteName" tabindex="-1">Loading...</h1><p id="siteDescription" class="description"></p>
+</div><figure class="image-stack"><img id="siteImage" alt="Country locator map"><figcaption><span id="map-country"></span><span>COUNTRY LOCATOR · NOT SITE BOUNDARIES</span></figcaption></figure>
+<div class="place-action"><button id="read-place" type="button" aria-expanded="false" aria-controls="place-notes">Read the place <span aria-hidden="true">↓</span></button><button id="favoriteBtn" type="button">Save favorite</button></div>
+<section id="place-notes" hidden aria-label="Field notes"><div class="notes-intro"><p class="eyebrow">A closer look</p><h2 id="siteSignificance"></h2></div><section class="highlight-panel"><h3>Look for</h3><ul id="siteHighlights"></ul></section><section class="story-panel" aria-label="Ways to read this place"><div class="lens-toggle" role="tablist" aria-label="Choose a lens"><button id="lensSenseBtn" role="tab" aria-selected="true" type="button">Notice</button><button id="lensStoryBtn" role="tab" aria-selected="false" type="button">Context</button><button id="lensRitualBtn" role="tab" aria-selected="false" type="button">A question</button></div><p id="lensBody" role="tabpanel"></p><details class="reflection"><summary>Take it with you</summary><p>Prompts for looking at a photograph or thinking about the place, not a claim that you are there.</p><ol id="microMoments"></ol></details></section></section>
+<nav class="nav-strip" aria-label="Place navigation"><button id="prevBtn" type="button" aria-label="Previous destination">← Previous</button><span id="sitePosition"></span><button id="nextBtn" type="button" aria-label="Next destination">Next place ↗</button></nav>
+<p id="statusMessage" role="status" aria-live="polite"></p>
+<details class="reference"><summary>Reference &amp; map</summary><p>Independent field guide. Not affiliated with UNESCO. Short summaries are based on the official listing; reflective prompts are editorial, not historical claims or travel instructions.</p><p>Inscribed <span id="siteYear"></span> · Criteria <span id="siteCriteria"></span><span id="siteSeason" hidden></span></p><p><a id="site-source" target="_blank" rel="noopener">Read the official UNESCO listing ↗</a></p><p>The map highlights a country, not the exact property or its boundaries. It replaces unreliable stock photographs. Small countries are deliberately marked for visibility. Not a navigation map.</p><p>Made with <a href="https://www.naturalearthdata.com/about/terms-of-use/" target="_blank" rel="noopener">Natural Earth</a>, public-domain 1:110m map data. Local SVG rendering, no remote tiles.</p></details>
+</div></section>
+<footer class="page-footer"><span>Six places. Look a little longer.</span><span>Saved places stay in this browser.</span></footer></main><script src="script.js" defer></script><script src="field-guide.js" defer></script></body></html>

@@ -22,4 +22,6 @@ jobs:
         if: always()
         with:
           name: navigation-evidence
-          path: docs/navigation/
+          path: |
+            docs/navigation/
+            docs/field-guide/

@@ -1,123 +1,185 @@
 const heritageSites = [
   {
-    name: 'Machu Picchu',
-    location: 'Cusco Region, Peru',
-    year: '1983',
-    category: 'Cultural',
-    season: 'May–September',
-    significance: 'Inca astronomy + engineering',
-    criteria: ['i', 'iii', 'vii', 'ix'],
-    highlights: ['Temple of the Sun', 'Terraced cloud-forest ridges', 'Sun Gate dawn trail'],
-    lenses: {
-      sense: 'Crisp mountain air, wet stone under your fingertips, and quiet wind passing terraces before the morning crowds arrive.',
-      story: 'An Inca citadel designed as both sanctuary and observatory, where architecture maps celestial rhythm into daily life.',
-      ritual: 'Start at first light, pause silently at the Sun Gate, then descend terrace by terrace to read the landscape like a ceremony.'
+    "name": "Machu Picchu",
+    "location": "Peru",
+    "year": "1983",
+    "category": "Mixed",
+    "significance": "An Inca city shaped around its mountain",
+    "criteria": [
+      "i",
+      "iii",
+      "vii",
+      "ix"
+    ],
+    "description": "Stone terraces follow a ridge between the Andes and the Amazon Basin. The city and its mountain forest are protected together.",
+    "highlights": [
+      "Stone terraces and water channels",
+      "An Inca settlement on a steep ridge",
+      "Mountain forest and varied habitats"
+    ],
+    "lenses": {
+      "sense": "Notice how the terraces follow the slope rather than flattening it. The city works with its mountain.",
+      "story": "Built in the fifteenth century, the settlement brings together ceremonial, agricultural and residential spaces. Its precise role is still debated.",
+      "ritual": "In a photograph, trace one terrace from end to end. How does it make a steep slope usable?"
     },
-    moments: ['Breathe for 20 seconds at a lookout and map three mountain layers.', 'Trace one carved edge with your eyes to notice precision.', 'Close your eyes and listen for wind, birds, and footsteps in sequence.'],
-    description:
-      'Suspended between mist and mountain ridges, this Inca citadel creates a meditative rhythm of stone terraces, cosmic alignments, and cloud forests.',
-    image:
-      'https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&w=1800&q=80'
+    "moments": [
+      "Look for the meeting of built stone and natural rock.",
+      "Ask what a water channel makes possible."
+    ],
+    "source": "https://whc.unesco.org/en/list/274/",
+    "image": "assets/locator-0.svg",
+    "season": "Not travel advice"
   },
   {
-    name: 'Angkor',
-    location: 'Siem Reap, Cambodia',
-    year: '1992',
-    category: 'Cultural',
-    season: 'November–February',
-    significance: 'Khmer cosmology and sacred urbanism',
-    criteria: ['i', 'ii', 'iii', 'iv'],
-    highlights: ['Bayon stone faces', 'Angkor Wat galleries', 'Lotus pond reflections'],
-    lenses: {
-      sense: 'Humidity, incense, and jungle birds frame sandstone corridors lit by moving bands of sun.',
-      story: 'Angkor is a sacred urban universe where power, devotion, and engineering converge in temple cities.',
-      ritual: 'Arrive at dawn for reflection pools, then walk shaded galleries slowly to read stories carved in bas-relief.'
+    "name": "Angkor",
+    "location": "Cambodia",
+    "year": "1992",
+    "category": "Cultural",
+    "significance": "A city built around temples and water",
+    "criteria": [
+      "i",
+      "ii",
+      "iii",
+      "iv"
+    ],
+    "description": "Temples, reservoirs and canals survive across a vast archaeological landscape. Angkor was a centre of the Khmer Empire, not a single temple.",
+    "highlights": [
+      "Angkor Wat and the Bayon",
+      "Reservoirs, canals and communication routes",
+      "Khmer architecture across several centuries"
+    ],
+    "lenses": {
+      "sense": "Look beyond the towers. Water and the space between buildings are part of this place too.",
+      "story": "The archaeological park holds remains of Khmer capitals from the ninth to the fifteenth century. Its architecture and water system reveal a large, connected city.",
+      "ritual": "Compare a temple plan with a reservoir. What does each tell you about the people who built the city?"
     },
-    moments: ['Find one bas-relief scene and identify movement in the figures.', 'Notice how trees and stones coexist at one corner.', 'Pause by water and watch how temple geometry mirrors in ripples.'],
-    description:
-      'A sacred choreography of temple towers and jungle silence, where lotus ponds, carved galleries, and sunrise reflections feel like a living mandala.',
-    image:
-      'https://images.unsplash.com/photo-1588666309990-d68f08e3d4a6?auto=format&fit=crop&w=1800&q=80'
+    "moments": [
+      "Separate the idea of Angkor from the single temple Angkor Wat.",
+      "Look for a connection between a building and water."
+    ],
+    "source": "https://whc.unesco.org/en/list/668/",
+    "image": "assets/locator-1.svg",
+    "season": "Not travel advice"
   },
   {
-    name: 'Serengeti National Park',
-    location: 'Tanzania',
-    year: '1981',
-    category: 'Natural',
-    season: 'June–October',
-    significance: 'Planet-scale migration ecology',
-    criteria: ['vii', 'x'],
-    highlights: ['Great migration crossings', 'Acacia-silhouette horizons', 'Predator-prey seasonal cycles'],
-    lenses: {
-      sense: 'Dry grass scent, low thunder from hooves, and sweeping skies that make every sound feel amplified.',
-      story: 'A living system of migration, predation, and renewal that shows nature as movement rather than still scenery.',
-      ritual: 'Scan the horizon in 360°, track one herd for several minutes, and note how birds signal where life gathers.'
+    "name": "Serengeti National Park",
+    "location": "Tanzania",
+    "year": "1981",
+    "category": "Natural",
+    "significance": "A landscape kept alive by movement",
+    "criteria": [
+      "vii",
+      "x"
+    ],
+    "description": "The plains support a vast annual migration of wildebeest, zebra and gazelle. The movement of animals is central to the park's value.",
+    "highlights": [
+      "The annual movement of large herds",
+      "Grassland and woodland habitats",
+      "Predators and their prey"
+    ],
+    "lenses": {
+      "sense": "Think of the landscape as a route, not a still view. The herds need room to move.",
+      "story": "The migration links feeding grounds across the wider ecosystem. Protecting one beautiful patch alone would not protect that movement.",
+      "ritual": "On a map, ask where a moving herd could go next. What happens if that route is cut off?"
     },
-    moments: ['Spot one herd and follow its direction without zooming first.', 'Count five distinct sounds before speaking.', 'Watch cloud shadows move across grasslands for one minute.'],
-    description:
-      'An endless horizon of light and migration, where grasslands, acacia silhouettes, and wildlife movement unfold like a breathing planetary pulse.',
-    image:
-      'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=1800&q=80'
+    "moments": [
+      "Look for the link between rainfall, grass and movement.",
+      "Consider why a park boundary cannot explain a whole ecosystem."
+    ],
+    "source": "https://whc.unesco.org/en/list/156/",
+    "image": "assets/locator-2.svg",
+    "season": "Not travel advice"
   },
   {
-    name: 'Old City of Dubrovnik',
-    location: 'Dubrovnik, Croatia',
-    year: '1979',
-    category: 'Cultural',
-    season: 'April–June',
-    significance: 'Adriatic maritime republic heritage',
-    criteria: ['i', 'iii', 'iv'],
-    highlights: ['City walls promenade', 'Marble limestone streets', 'Baroque facades at sunset'],
-    lenses: {
-      sense: 'Sea salt in the air, bright stone under sunlight, and distant bells bouncing through narrow lanes.',
-      story: 'A resilient maritime republic whose walls and squares preserve centuries of Adriatic diplomacy and trade.',
-      ritual: 'Walk the walls before noon, then descend into side alleys to feel the city shift from monument to neighborhood.'
+    "name": "Old City of Dubrovnik",
+    "location": "Croatia",
+    "year": "1979",
+    "category": "Cultural",
+    "significance": "A city with a long memory",
+    "criteria": [
+      "i",
+      "iii",
+      "iv"
+    ],
+    "description": "Gothic, Renaissance and Baroque buildings share a small city on the Adriatic. Earthquake and conflict have made restoration part of its history.",
+    "highlights": [
+      "Churches, monasteries and palaces",
+      "Gothic, Renaissance and Baroque architecture",
+      "Repair after the 1667 earthquake and later conflict"
+    ],
+    "lenses": {
+      "sense": "Look for buildings from different periods standing next to one another. A city is built in layers.",
+      "story": "Dubrovnik became an important Mediterranean sea power from the thirteenth century. Its buildings survived an earthquake and later damage, with restoration continuing that history.",
+      "ritual": "Choose two neighbouring buildings in a photograph. What clues suggest they come from different times?"
     },
-    moments: ['Touch a cool limestone wall and compare sunlit versus shaded tones.', 'Find a narrow lane and follow it without checking a map.', 'Pause at a high point and trace the line where sea meets fortifications.'],
-    description:
-      'A luminous Adriatic fortress city where marble streets, baroque facades, and sea-washed walls create an immersive atmosphere of calm grandeur.',
-    image:
-      'https://images.unsplash.com/photo-1549893074-67c7b88c5a73?auto=format&fit=crop&w=1800&q=80'
+    "moments": [
+      "Notice the relationship between the old city and the sea.",
+      "Ask which details might have been repaired."
+    ],
+    "source": "https://whc.unesco.org/en/list/95/",
+    "image": "assets/locator-3.svg",
+    "season": "Not travel advice"
   },
   {
-    name: 'Great Barrier Reef',
-    location: 'Queensland, Australia',
-    year: '1981',
-    category: 'Natural',
-    season: 'June–November',
-    significance: 'Largest coral ecosystem on Earth',
-    criteria: ['vii', 'viii', 'ix', 'x'],
-    highlights: ['Coral bommies and lagoons', 'Sea turtle migration', 'Outer-reef blue gradients'],
-    lenses: {
-      sense: 'Salt on skin, filtered turquoise light, and the muffled crackle of reef life beneath the surface.',
-      story: 'The reef is an immense living architecture built by coral communities over millennia.',
-      ritual: 'Begin with shallow observation, identify three coral textures, then drift slowly to notice color gradients.'
+    "name": "Great Barrier Reef",
+    "location": "Australia",
+    "year": "1981",
+    "category": "Natural",
+    "significance": "Living structures on an enormous scale",
+    "criteria": [
+      "vii",
+      "viii",
+      "ix",
+      "x"
+    ],
+    "description": "Off Queensland, coral reefs, islands and surrounding waters form a vast marine ecosystem. Living organisms have helped build the landscape itself.",
+    "highlights": [
+      "Coral reefs and island habitats",
+      "A wide variety of marine life",
+      "An ecosystem off the Queensland coast"
+    ],
+    "lenses": {
+      "sense": "A reef is built by living things. Look for both the structure and the animals that use it.",
+      "story": "The property protects a large connected marine area with many habitats. Its variety is more than a collection of colourful corals.",
+      "ritual": "In an underwater photograph, find a living animal and a shelter it could use. How are the two connected?"
     },
-    moments: ['Look for one color family changing across depth.', 'Watch fish movement around a coral head for 30 seconds.', 'Surface and describe the quiet before speaking loudly.'],
-    description:
-      'An underwater cathedral of color and motion, where coral architecture and translucent blue gradients deliver a serene, floating sense of wonder.',
-    image:
-      'https://images.unsplash.com/photo-1546026423-cc4642628d2b?auto=format&fit=crop&w=1800&q=80'
+    "moments": [
+      "Distinguish a coral colony from the larger reef.",
+      "Think about what a sheltered patch offers to a small fish."
+    ],
+    "source": "https://whc.unesco.org/en/list/154/",
+    "image": "assets/locator-4.svg",
+    "season": "Not travel advice"
   },
   {
-    name: 'Petra',
-    location: 'Ma’an Governorate, Jordan',
-    year: '1985',
-    category: 'Cultural',
-    season: 'March–May',
-    significance: 'Nabataean trade and rock architecture',
-    criteria: ['i', 'iii', 'iv'],
-    highlights: ['The Siq approach', 'Al-Khazneh facade', 'Monastery plateau vistas'],
-    lenses: {
-      sense: 'Warm canyon air, echoing footsteps, and pink sandstone glowing differently with each turn.',
-      story: 'A Nabataean crossroads of trade where carved facades announced wealth, ritual, and global exchange.',
-      ritual: 'Enter through the Siq slowly, delay your first photo, and let the Treasury reveal itself as a staged arrival.'
+    "name": "Petra",
+    "location": "Jordan",
+    "year": "1985",
+    "category": "Cultural",
+    "significance": "A trading city worked into the rock",
+    "criteria": [
+      "i",
+      "iii",
+      "iv"
+    ],
+    "description": "Part built and part carved into sandstone, Petra stood at an important meeting of trade routes. Its water system made life in this dry setting possible.",
+    "highlights": [
+      "Rock-cut tombs and temples",
+      "Nabataean and Hellenistic influences",
+      "Water collection and distribution"
+    ],
+    "lenses": {
+      "sense": "Look at the difference between a building placed on rock and a facade cut into it.",
+      "story": "Petra was an important Nabataean caravan centre. Its architecture draws on several traditions, while its water engineering supported settlement in an arid landscape.",
+      "ritual": "Look for a water channel in a plan or photograph. What would the city need to do when rain was scarce?"
     },
-    moments: ['Walk one stretch in silence to feel echo and scale.', 'Notice one carved detail before viewing the full facade.', 'At a vista, identify how shadow reshapes cliff textures.'],
-    description:
-      'Rose-red facades emerging from canyon shadows compose a cinematic ritual of approach, revealing a timeless city carved directly into living stone.',
-    image:
-      'https://images.unsplash.com/photo-1563177853-52aa306f49c1?auto=format&fit=crop&w=1800&q=80'
+    "moments": [
+      "Trace the edge where a carved facade meets the cliff.",
+      "Consider how trade and water shaped the same city."
+    ],
+    "source": "https://whc.unesco.org/en/list/326/",
+    "image": "assets/locator-5.svg",
+    "season": "Not travel advice"
   }
 ];
 
@@ -179,16 +241,15 @@ function preloadImage(url) {
 }
 
 function updateFavoriteCount() {
-  const completion = Math.round((favoriteIndexes.size / heritageSites.length) * 100);
-  refs.favoriteCount.textContent = `Favorites saved: ${favoriteIndexes.size}/${heritageSites.length} (${completion}% explored deeply)`;
+  refs.favoriteCount.textContent = `Saved places: ${favoriteIndexes.size}/${heritageSites.length}`;
 
   if (favoriteIndexes.size === 0) {
-    refs.favoritesList.textContent = 'Curator list: none yet. Press F to save a site you love.';
+    refs.favoritesList.textContent = 'No saved places yet.';
     return;
   }
 
-  const names = [...favoriteIndexes].map((index) => heritageSites[index].name).slice(-3);
-  refs.favoritesList.textContent = `Curator list: ${names.join(' · ')}`;
+  const names = [...favoriteIndexes].map((index) => heritageSites[index].name);
+  refs.favoritesList.textContent = `${names.join(' · ')}`;
 }
 
 function setStatus(message) {
@@ -197,8 +258,8 @@ function setStatus(message) {
 
 function accentForCategory(category) {
   return category === 'Natural'
-    ? { accent: '#89e7d1', soft: 'rgba(137, 231, 209, 0.26)' }
-    : { accent: '#9bd1ff', soft: 'rgba(155, 209, 255, 0.24)' };
+    ? { accent: '#385b4a', soft: 'rgba(137, 231, 209, 0.26)' }
+    : { accent: '#665038', soft: 'rgba(155, 209, 255, 0.24)' };
 }
 
 function renderHighlights(items) {
@@ -225,6 +286,8 @@ function renderLens(site) {
     const selected = key === activeLens;
     button.classList.toggle('is-active', selected);
     button.setAttribute('aria-selected', String(selected));
+    button.tabIndex=selected?0:-1;
+    if(selected)refs.lensBody.setAttribute('aria-labelledby',button.id);
   });
 }
 
@@ -262,8 +325,14 @@ function renderSite(index, direction = 'next') {
     refs.significance.textContent = site.significance;
     refs.criteria.textContent = site.criteria.map((criterion) => `(${criterion})`).join(' ');
     refs.categoryBadge.textContent = site.category;
+    refs.image.hidden=false;
+    document.querySelector('.image-stack figcaption').innerHTML='<span id="map-country"></span><span>COUNTRY LOCATOR · NOT SITE BOUNDARIES</span>';
     refs.image.src = site.image;
-    refs.image.alt = `${site.name}, ${site.location}`;
+    refs.image.alt = `World locator: ${site.location} highlighted. Not site boundaries or a photograph.`;
+    document.getElementById("site-source").href=site.source;
+    document.getElementById("map-country").textContent=site.location;
+    document.getElementById("place-number").textContent=String(index+1).padStart(2,"0");
+    document.querySelectorAll("[data-place]").forEach((b,i)=>b.setAttribute("aria-current",String(i===index)));
     renderHighlights(site.highlights);
     renderMoments(site.moments);
     renderLens(site);
@@ -278,7 +347,7 @@ function renderSite(index, direction = 'next') {
     if(!initial){refs.name.focus({preventScroll:true});refs.name.scrollIntoView({block:'start',behavior:'instant'});}
     refs.button.disabled = false;
     refs.button.removeAttribute('aria-busy');
-    setStatus(`Now exploring ${site.name}. Swipe or use ←/→ to navigate, Enter for surprise, F to toggle favorite.`);
+    setStatus(`Now exploring ${site.name}.`);
   }, reducedMotion()?0:170);
 
   currentIndex = index;
@@ -323,11 +392,11 @@ refs.favoriteButton.addEventListener('click', () => {
   const site = heritageSites[currentIndex];
   if (favoriteIndexes.has(currentIndex)) {
     favoriteIndexes.delete(currentIndex);
-    setStatus(`Removed ${site.name} from your curator list.`);
+    setStatus(`Removed ${site.name} from your saved places.`);
     refs.favoriteButton.textContent = 'Save favorite';
   } else {
     favoriteIndexes.add(currentIndex);
-    setStatus(`Saved ${site.name} to your curator list.`);
+    setStatus(`Saved ${site.name} to your saved places.`);
     refs.favoriteButton.textContent = 'Saved ✓';
   }
 
@@ -341,7 +410,7 @@ Object.entries(refs.lensButtons).forEach(([lens, button]) => {
     if (currentIndex >= 0) {
       const site = heritageSites[currentIndex];
       renderLens(site);
-      setStatus(`Lens changed to ${lens}.`);
+      setStatus(`Lens changed to ${refs.lensButtons[lens].textContent}.`);
     }
   });
 });
@@ -393,4 +462,4 @@ refs.card.addEventListener('touchend', () => {
 
 updateFavoriteCount();
 setStatus('Tip: swipe or use ←/→ to navigate. Press Space/Enter to discover and F to favorite.');
-renderSite(randomIndex(currentIndex), 'next');
+renderSite(0, 'next');
