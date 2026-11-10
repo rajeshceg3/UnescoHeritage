@@ -20,10 +20,12 @@ let legacy = [],
 let storageIssue = false;
 try {
   const v = JSON.parse(localStorage.getItem("unesco-favorites") || "[]");
+  if (!Array.isArray(v)) throw Error("saved-data");
   legacy = Array.isArray(v)
     ? v.filter((i) => Number.isInteger(i) && i >= 0 && i < 6)
     : [];
   const e = JSON.parse(localStorage.getItem("unesco-favorites-ids") || "[]");
+  if (!Array.isArray(e)) throw Error("saved-data");
   extra = Array.isArray(e) ? e.filter((i) => typeof i === "string") : [];
 } catch {
   storageIssue = true;
@@ -146,8 +148,7 @@ function renderSite(s, focus = false) {
   $("siteCriteria").textContent = s.criteria || "Not supplied in this snapshot";
   $("site-source").href = `https://whc.unesco.org/en/list/${s.id}/`;
   $("place-number").textContent = "";
-  $("sitePosition").textContent =
-    `${view.indexOf(s) + 1} / ${view.length.toLocaleString("en")}`;
+  position();
   const custom = curatedSites[LEGACY.indexOf(s.id)];
   $("siteSignificance").textContent = custom?.significance || "A closer look";
   $("siteHighlights").replaceChildren();
@@ -335,7 +336,7 @@ $("favoriteBtn").onclick = () => {
       extra = saved(id) ? extra.filter((n) => n !== id) : [...extra, id];
       localStorage.setItem("unesco-favorites-ids", JSON.stringify(extra));
     }
-    countSaved();
+    filterSites();
     status(
       saved(id)
         ? "Place saved in this browser."
