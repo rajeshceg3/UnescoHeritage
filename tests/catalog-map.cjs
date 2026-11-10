@@ -29,7 +29,7 @@ const { chromium } = require("playwright"),
     assert.equal(before.height, after.height);
     const dims = await p.evaluate(() => {
       const a = document.querySelector("#siteImage").getBoundingClientRect(),
-        b = document.querySelector(".map-point").getBoundingClientRect();
+        b = document.querySelector(".story-art .map-point").getBoundingClientRect();
       return { iw: a.width, ih: a.height, sw: b.width, sh: b.height };
     });
     assert.ok(
@@ -46,7 +46,7 @@ const { chromium } = require("playwright"),
     );
     await e.locator("#read-place").click();
     assert.equal(await e.locator("#place-notes").isVisible(), true);
-    assert.equal(await e.locator(".map-point").isVisible(), false);
+    assert.equal(await e.locator(".story-art .map-point").isVisible(), false);
     await e.close();
     console.log(
       "slow map reserves final geometry, overlay aligned, failed map leaves notes usable",

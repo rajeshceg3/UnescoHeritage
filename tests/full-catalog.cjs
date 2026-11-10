@@ -135,7 +135,7 @@ for (const s of data.sites) {
           document.querySelector("#map-country").textContent ===
           "No reference coordinate supplied",
       );
-      assert.equal(await p.locator(".map-point").isVisible(), false);
+      assert.equal(await p.locator(".story-art .map-point").isVisible(), false);
       assert.equal(await p.locator("#place-notes").isVisible(), false);
       await p.screenshot({
         path: `${out}/missing-point-${w}.png`,

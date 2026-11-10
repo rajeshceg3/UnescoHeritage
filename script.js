@@ -261,6 +261,17 @@ function renderSite(s, focus = false) {
     $("storyArt").classList.add("illustrated");
     $("map-country").textContent = "";
     $("map-caveat").hidden = true;
+    const rp = s.point;
+    $("refMap").hidden = mapFailed || !rp;
+    if (rp) {
+      for (const id of ["ref-point-ring", "ref-point-dot"]) {
+        $(id).setAttribute("cx", (rp.lon + 180) * 2.5);
+        $(id).setAttribute("cy", (90 - rp.lat) * 2.5);
+      }
+      $("refMapImg").alt = `World locator with a representative point for ${s.name}. Not property boundaries.`;
+      $("refMapCountry").textContent =
+        "UNESCO reference coordinate · not boundaries";
+    }
     renderStoryArt(story);
   } else {
     $("storyArtInner").hidden = true;
@@ -293,6 +304,7 @@ function renderSite(s, focus = false) {
       ? `World locator with a representative point for ${s.name}. Not property boundaries.`
       : `World reference map; no point is supplied for this property.`;
     $("siteImage").hidden = mapFailed;
+    $("refMap").hidden = true;
   }
   if (mapFailed) showMapFailure();
   $("nextBtn").disabled = view.length < 2;

@@ -266,6 +266,31 @@ const ratio = (fg, bg) => {
         await p.close();
       }
     }
+    // map gate: story pages hide the locator behind the Reference disclosure
+    {
+      const p = await b.newPage({ viewport: { width: 390, height: 844 }, reducedMotion: "reduce" });
+      await p.goto(`${base}/#site=274`);
+      await p.waitForFunction(
+        () => document.querySelector("#siteName").textContent === "Historic Sanctuary of Machu Picchu",
+      );
+      const det = p.locator("details.reference");
+      assert.equal(await det.evaluate((d) => d.open), false, "reference closed by default");
+      assert.equal(await p.locator("#refMap").isVisible(), false, "map hidden while closed");
+      assert.equal(await p.locator("#siteImage").isVisible(), false, "art replaces map on stage");
+      await p.locator("details.reference summary").click();
+      assert.equal(await p.locator("#refMap").isVisible(), true, "map visible when open");
+      const geo = await p.evaluate(() => {
+        const a = document.querySelector("#refMapImg").getBoundingClientRect();
+        const b = document.querySelector("#refMap .map-point").getBoundingClientRect();
+        const r = document.querySelector("#ref-point-ring");
+        const cap = document.querySelector("#refMapCountry").textContent;
+        return { iw: a.width, ih: a.height, sw: b.width, sh: b.height, cx: +r.getAttribute("cx"), cy: +r.getAttribute("cy"), cap };
+      });
+      assert.ok(Math.abs(geo.iw - geo.sw) < 1 && Math.abs(geo.ih - geo.sh) < 3, "overlay aligned");
+      assert.ok(geo.cx >= 0 && geo.cx <= 900 && geo.cy >= 0 && geo.cy <= 450, "point in map");
+      assert.ok(geo.cap.length > 0, "map captioned");
+      await p.close();
+    }
     fs.writeFileSync(`${out}/results.json`, JSON.stringify(results, null, 2));
     console.log("illustrated stories PASS", results.length, "viewport-theme runs");
   } finally {

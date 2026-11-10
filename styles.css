@@ -682,3 +682,24 @@ summary::-webkit-details-marker {
     text-align: center;
   }
 }
+
+.ref-map {
+  position: relative;
+  margin: 10px 0 14px;
+  max-width: 420px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--panel);
+}
+.ref-map img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.ref-map figcaption {
+  padding: 4px 10px 6px;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
