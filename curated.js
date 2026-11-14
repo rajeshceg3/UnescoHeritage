@@ -19,11 +19,11 @@ const curatedSites = [
       story:
         "Built in the fifteenth century, the settlement brings together ceremonial, agricultural and residential spaces. Its precise role is still debated.",
       ritual:
-        "In a photograph, trace one terrace from end to end. How does it make a steep slope usable?",
+        "Trace a terrace from end to end. Its level surface follows the steep mountainside.",
     },
     moments: [
       "Look for the meeting of built stone and natural rock.",
-      "Ask what a water channel makes possible.",
+      "Notice a water channel running beside the stone.",
     ],
     source: "https://whc.unesco.org/en/list/274/",
     image: "assets/locator-0.svg",
@@ -49,7 +49,7 @@ const curatedSites = [
       story:
         "The archaeological park holds remains of Khmer capitals from the ninth to the fifteenth century. Its architecture and water system reveal a large, connected city.",
       ritual:
-        "Compare a temple plan with a reservoir. What does each tell you about the people who built the city?",
+        "Notice the temples and reservoirs together: Angkor was a connected city of stone and water.",
     },
     moments: [
       "Separate the idea of Angkor from the single temple Angkor Wat.",
@@ -79,7 +79,7 @@ const curatedSites = [
       story:
         "The migration links feeding grounds across the wider ecosystem. Protecting one beautiful patch alone would not protect that movement.",
       ritual:
-        "On a map, ask where a moving herd could go next. What happens if that route is cut off?",
+        "Follow the open grassland across the map. The herds need connected routes through the wider ecosystem.",
     },
     moments: [
       "Look for the link between rainfall, grass and movement.",
@@ -109,11 +109,11 @@ const curatedSites = [
       story:
         "Dubrovnik became an important Mediterranean sea power from the thirteenth century. Its buildings survived an earthquake and later damage, with restoration continuing that history.",
       ritual:
-        "Choose two neighbouring buildings in a photograph. What clues suggest they come from different times?",
+        "Notice neighbouring buildings from different periods, with repair and rebuilding woven between them.",
     },
     moments: [
       "Notice the relationship between the old city and the sea.",
-      "Ask which details might have been repaired.",
+      "Notice where repairs sit beside older stone.",
     ],
     source: "https://whc.unesco.org/en/list/95/",
     image: "assets/locator-3.svg",
@@ -139,11 +139,11 @@ const curatedSites = [
       story:
         "The property protects a large connected marine area with many habitats. Its variety is more than a collection of colourful corals.",
       ritual:
-        "In an underwater photograph, find a living animal and a shelter it could use. How are the two connected?",
+        "Notice the small animals among the coral. Living structures become places of shelter.",
     },
     moments: [
       "Distinguish a coral colony from the larger reef.",
-      "Think about what a sheltered patch offers to a small fish.",
+      "Follow a small fish into a sheltered patch of reef.",
     ],
     source: "https://whc.unesco.org/en/list/154/",
     image: "assets/locator-4.svg",
@@ -169,7 +169,7 @@ const curatedSites = [
       story:
         "Petra was an important Nabataean caravan centre. Its architecture draws on several traditions, while its water engineering supported settlement in an arid landscape.",
       ritual:
-        "Look for a water channel in a plan or photograph. What would the city need to do when rain was scarce?",
+        "Trace a water channel through the rock. Collection and storage supported life in this dry city.",
     },
     moments: [
       "Trace the edge where a carved facade meets the cliff.",

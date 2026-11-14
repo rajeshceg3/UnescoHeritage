@@ -2,7 +2,7 @@
   "name": "unesco-heritage-navigation",
   "private": true,
   "scripts": {
-    "test": "node --check script.js && node --check stories.js && node --check curated.js && node tests/full-catalog.cjs && node tests/catalog-edge.cjs && node tests/catalog-map.cjs && node tests/illustrated-stories.cjs"
+    "test": "node tests/quiet-place.cjs && node --check script.js && node --check stories.js && node --check curated.js && node tests/full-catalog.cjs && node tests/catalog-edge.cjs && node tests/catalog-map.cjs && node tests/illustrated-stories.cjs"
   },
   "devDependencies": {
     "playwright": "1.56.1"
