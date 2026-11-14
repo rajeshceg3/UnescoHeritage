@@ -119,9 +119,9 @@ function lens() {
   if (!current) return;
   const custom = curatedSites[LEGACY.indexOf(current.id)];
   const generic = [
-    "Start with the locator and the official description. What connects this place to its setting?",
-    "Read the full UNESCO description above. Which events or traditions connect the place to its history?",
-    "Which detail would you want to understand better? Follow the official listing before relying on a map point or planning a visit.",
+    "Notice the place in its wider setting. The locator is a starting point, not the whole landscape.",
+    "The full UNESCO description brings the place's history and traditions into view.",
+    "Stay with one detail, then follow the official listing for a closer look beyond this map point.",
   ];
   $("lensBody").textContent = custom
     ? custom.lenses[["sense", "story", "ritual"][activeLens]]
@@ -225,8 +225,8 @@ function renderSite(s, focus = false) {
   $("microMoments").replaceChildren();
   (
     custom?.moments || [
-      "Name one question the official description raises for you.",
-      "Consider what a single point on a map cannot tell you.",
+      "Pause on one detail in the official description.",
+      "A point on a map is only the beginning of a place.",
     ]
   )
     .slice(0, 2)
